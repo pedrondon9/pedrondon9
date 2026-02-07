@@ -60,12 +60,14 @@ export default function Page() {
             </div>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {projects.map((project, index) => (
+                    <div key={index}>
                     <ProjectsGrid
                         title={project.title}
                         description={project.description}
                         tech={project.tech}
                         link={project.link}
                     />
+                    </div>
                 ))}
             </div>
         </div>

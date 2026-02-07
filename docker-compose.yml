@@ -1,19 +1,12 @@
-
 services:
-  # Tu aplicación Next.js
-  pedrondong:
+  next-server:
     build: .
-    # No mapeamos puertos aquí para que solo Nginx sea accesible desde afuera
-    deploy:
-      replicas: 3  # Levantará 3 contenedores iguales
-    restart: always
-
-  # El balanceador de carga
-  gateway:
-    image: nginx:alpine
+    container_name: pedrondong
     ports:
-      - "80:80"  # El mundo entra por el puerto 80
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - pedrondong
+      - "3000:3000"
+    restart: always # Si el servidor se cae, Docker lo levanta solo
+    environment:
+      - NODE_ENV=production
+      # Aquí puedes añadir tus variables de entorno (.env)
+      - DATABASE_URL=tu_url_aqui
+

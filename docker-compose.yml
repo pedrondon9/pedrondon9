@@ -3,7 +3,7 @@ services:
     build: .
     container_name: pedrondong
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     restart: always # Si el servidor se cae, Docker lo levanta solo
     environment:
       - NODE_ENV=production

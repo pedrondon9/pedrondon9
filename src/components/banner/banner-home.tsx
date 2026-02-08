@@ -16,7 +16,7 @@ export const BannerHome = () => {
 
         {/* Título Principal */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Ciencia de Datos</span> y el Desarrollo <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Full Stack</span> 
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Ciencia de Datos</span> y Desarrollo <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Full Stack</span> 
         
         </h1>
 

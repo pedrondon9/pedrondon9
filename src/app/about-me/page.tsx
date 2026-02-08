@@ -107,9 +107,9 @@ export default function AboutStory() {
                             <span>Formación Actual</span>
                         </div>
                         <p className="text-lg italic leading-relaxed">
-                            "Actualmente desarrollo mis habilidades en análisis masivo de datos y aprendizaje automático
+                            Actualmente desarrollo mis habilidades en análisis masivo de datos y aprendizaje automático
                             en la VIU, con el firme objetivo de aplicar inteligencia artificial al servicio de los desafíos
-                            sociales y tecnológicos actuales."
+                            sociales y tecnológicos actuales.
                         </p>
                     </CardContent>
                 </Card>

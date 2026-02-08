@@ -44,7 +44,7 @@ export const metadata = {
     siteName: 'Pedro Ndong Portfolio',
     images: [
       {
-        url: '/og-image.png', // Asegúrate de tener esta imagen en tu carpeta public
+        url: '', // Asegúrate de tener esta imagen en tu carpeta public
         width: 1200,
         height: 630,
         alt: 'Pedro Ndong - Data Science and AI',
@@ -58,7 +58,7 @@ export const metadata = {
     title: 'Pedro Ndong | Data Scientist & Full Stack Developer',
     description: 'Transformando datos en decisiones y código en soluciones.',
     creator: '@tu_usuario_twitter', // Opcional
-    images: ['/og-image.png'],
+    images: [''],
   },
   robots: {
     index: true,

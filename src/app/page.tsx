@@ -6,6 +6,7 @@ import { EmptyComponent } from "@/components/empty"
 import { Footer } from "@/components/footer/footer"
 import ProjectsGrid from "@/components/table/table-work"
 import { TypographyH2 } from "@/components/text-sub-title"
+import { Empty } from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
 
 const projects = [
@@ -55,10 +56,12 @@ export default function Page() {
                 <Card_Content />
                 <Card_Content />
             </div>
+            <Empty className=""/>
+
             <div className="">
                 <TypographyH2 title={'Trabajos reciente'} />
             </div>
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 ">
                 {projects.map((project, index) => (
                     <div key={index}>
                     <ProjectsGrid
@@ -70,6 +73,8 @@ export default function Page() {
                     </div>
                 ))}
             </div>
+                        <Empty className=""/>
+
         </div>
     )
 }

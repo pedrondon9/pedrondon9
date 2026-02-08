@@ -52,9 +52,9 @@ type SideNavProps = {
 
 const items = [
 
-    { url: "/home/content", title: "Contenido", icon: ContainerIcon, isActive: true },
-    { url: "/home/block", title: "Trabajos", icon: BlocksIcon },
-    { url: "/home/about-me", title: "Sobre mi", icon: User },
+    { url: "/content", title: "Contenido", icon: ContainerIcon, isActive: true },
+    { url: "/block", title: "Trabajos", icon: BlocksIcon },
+    { url: "/about-me", title: "Sobre mi", icon: User },
 ]
 
 
@@ -82,14 +82,8 @@ export default function SideNav({ isOpen, setIsOpen }: SideNavProps) {
                             className="flex items-center space-x-3"
                             onClick={() => setIsOpen(false)}
                         >
-                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600">
-                                <Zap className="h-5 w-5 text-white" />
-                            </div>
                             <div className="flex flex-col">
-                                <span className="font-bold text-lg">pedrondong</span>
-                                <Badge variant="secondary" className="w-fit text-xs">
-                                    AI & Full Stack
-                                </Badge>
+                                <span className="font-bold text-lg">pedrondong.com</span>
                             </div>
                         </Link>
                     </div>

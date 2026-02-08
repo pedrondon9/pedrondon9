@@ -18,26 +18,52 @@ const inter = Inter({
 // Metadata para SEO
 export const metadata = {
   title: {
-    default: 'Tu Sitio Web - Título Principal',
-    template: '%s | Tu Sitio Web'
+    default: 'Pedro Ndong | Data Scientist & Full Stack Developer',
+    template: '%s | Pedro Ndong'
   },
-  description: 'Descripción profesional de tu sitio web',
-  keywords: ['palabra clave 1', 'palabra clave 2', 'palabra clave 3'],
-  authors: [{ name: 'Tu Nombre' }],
-  creator: 'Tu Nombre',
-  publisher: 'Tu Empresa',
-  metadataBase: new URL('https://tudominio.com'),
+  description: 'Especialista en Data Science, Inteligencia Artificial y Desarrollo Full Stack. Soluciones tecnológicas escalables y análisis de datos avanzado.',
+  keywords: [
+    'Pedro Ndong Ondo Avomo', 
+    'Data Scientist', 
+    'Machine Learning Engineer', 
+    'Full Stack Developer', 
+    'IA aplicada', 
+    'Desarrollo Web'
+  ],
+  authors: [{ name: 'Pedro Ndong', url: 'https://pedrondong.com' }],
+  creator: 'Pedro Ndong',
+  publisher: 'Pedro Ndong',
+  metadataBase: new URL('https://pedrondong.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Tu Sitio Web',
-    description: 'Descripción profesional de tu sitio web',
-    url: 'https://tudominio.com',
-    siteName: 'Tu Sitio Web',
+    title: 'Pedro Ndong | Data Science & AI Expert',
+    description: 'Portafolio profesional de Pedro Ndong. Innovación en IA y desarrollo de software de alto impacto.',
+    url: 'https://pedrondong.com',
+    siteName: 'Pedro Ndong Portfolio',
+    images: [
+      {
+        url: '/og-image.png', // Asegúrate de tener esta imagen en tu carpeta public
+        width: 1200,
+        height: 630,
+        alt: 'Pedro Ndong - Data Science and AI',
+      },
+    ],
     locale: 'es_ES',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pedro Ndong | Data Scientist & Full Stack Developer',
+    description: 'Transformando datos en decisiones y código en soluciones.',
+    creator: '@tu_usuario_twitter', // Opcional
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: true,
     googleBot: {
       index: true,
       follow: true,

@@ -1,94 +1,129 @@
 'use client'
 
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import {
+    Code2,
+    Database,
+    BrainCircuit,
+    Rocket,
+    Globe,
+    Terminal,
+    Layers,
+    Cpu
+} from "lucide-react";
 
 export default function AboutStory() {
     return (
-        <section className=" flex justify-center ">
-            <div className="container flex justify-center px-1 ">
+        <div className="max-w-4xl mx-auto p-6 space-y-12 bg-background text-foreground">
 
-                {/* Texto narrativo */}
-                <div className="flex-1 max-w-xl ">
-                    <h2 className="text-4xl md:text-5xl font-bold  mb-6">
+            {/* Hero Section / Mi Historia */}
+            <section className="space-y-6">
+                <div className="space-y-2">
+                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
                         Mi historia
-                    </h2>
-
-                    <p className="leading-relaxed mb-6 text-lg ">
-                        Nací en <span className="font-semibold  text-white">Guinea Ecuatorial</span>,
-                        en un pequeño pueblo donde la curiosidad y las ganas de aprender eran mis mayores herramientas.
-                        Desde joven me fascinó entender cómo funcionan las cosas, especialmente la tecnología y la forma
-                        en que los sistemas conectan a las personas.
+                    </h1>
+                    <p className="text-xl text-muted-foreground font-medium">
+                        De Guinea Ecuatorial al mundo del código y los datos.
                     </p>
+                </div>
 
-                    <p className="leading-relaxed mb-6">
+                <div className="prose prose-stone dark:prose-invert max-w-none space-y-4 text-lg">
+                    <p>
+                        Hola, me llamo <strong>Pedro Ndong</strong> nací en <strong>Guinea Ecuatorial</strong>, donde la curiosidad innata se convirtió en mi principal motor de aprendizaje.
+                        Ese impulso me llevó a formarme como <strong>programador autodidacta</strong>, experimentando con código hasta profesionalizarme
+                        en el mundo <strong>Freelance</strong>, donde aprendí a transformar ideas en soluciones reales.
+                    </p>
+                    <p>
+                        Con el objetivo de estandarizar mis habilidades bajo niveles de industria, obtuve la <strong>Certificación Profesional de IBM
+                            en Full Stack Developer</strong> a través de Coursera, consolidando mi dominio en arquitecturas escalables y entornos cloud.
+                    </p>
+                    <p>
+                        Hoy, mi evolución continúa en la <strong>VIU</strong>, cursando el <strong>Grado en Ciencia de Datos e
+                            Inteligencia Artificial</strong>. Mi objetivo es fusionar la lógica de la programación con el poder
+                        predictivo de los datos para crear soluciones que impacten realmente en el mundo.
+                    </p>
+                </div>
+            </section>
 
-                    </p>
-                    <p className="leading-relaxed text-lg  mb-6">
-                        Esa curiosidad me llevó a aprender <span className="font-semibold text-white">programación de manera autodidacta</span>,
-                        explorando código, rompiendo cosas y volviéndolas a construir.
-                        Al principio creaba proyectos personales solo por diversión,
-                        hasta que otras personas empezaron a pedirme ayuda con los suyos.
-                    </p>
+            <Separator />
 
-                    <p className="leading-relaxed text-lg  mb-6">
-                        Así fue como entré en el mundo <span className="font-semibold text-white">freelance</span> y me formé como
-                        <span className="font-semibold text-white"> desarrollador Full Stack</span>, combinando creatividad y lógica para dar vida a ideas.
-                        Para consolidar mis conocimientos, obtuve un <span className="font-semibold text-white">certificado en Full Stack Development de IBM</span>,
-                        y mi deseo de seguir creciendo me llevó a matricularme en el
-                        <span className="font-semibold text-white"> Grado en Ciencia de Datos e Inteligencia Artificial en la VIU</span>.
-                    </p>
+            {/* Stack Tecnológico */}
+            <section className="space-y-8">
+                <div className="flex items-center gap-2">
+                    <h2 className="text-3xl font-bold tracking-tight  text-indigo-400">Stack Tecnológico</h2>
+                </div>
 
-                    <p className="leading-relaxed text-lg  mb-6">
-                        Hoy sigo descubriendo nuevas formas de conectar la
-                        <span className="font-semibold text-white"> tecnología, los datos y la innovación</span>,
-                        siempre con la misma curiosidad que me trajo hasta aquí.
-                    </p>
-                    <Card className=" border-stone-800 text-lg  mb-6">
-                        <CardContent className="p-5">
-                            <h3 className="text-xl font-semibold text-white mb-3">Formación</h3>
-                            <p className="leading-relaxed text-lg ">
-                                Actualmente curso <span className="text-white">Ciencias de Datos e Inteligencia Artificial</span>,
-                                donde desarrollo mis habilidades en análisis, estadística y machine learning, con el objetivo
-                                de aplicar la tecnología al servicio de mi comunidad.
-                            </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    {/* Data Science & IA Card */}
+                    <Card className="border-2 border-primary/20  bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <BrainCircuit className="w-5 h-5 text-primary" />
+                                <CardTitle>Ciencia de Datos e IA</CardTitle>
+                            </div>
+                            <CardDescription>Análisis predictivo y modelado estadístico</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex flex-wrap gap-2">
+                            {["Python","R", "Pandas", "NumPy", "TensorFlow", "Scikit-learn", "Estadística", "Machine Learning"].map((skill) => (
+                                <Badge key={skill} variant="secondary" className="px-3 py-1 font-semibold">
+                                    {skill}
+                                </Badge>
+                            ))}
                         </CardContent>
                     </Card>
 
-                    <h3 className="text-xl font-semibold text-white mb-3 text-lg ">Tecnologías que uso</h3>
-                                        <Card className=" border-stone-800 text-lg  mb-6">
-                        <CardContent className="p-5">
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {[
-                            "React", "Next.js", "TailwindCSS", "Shadcn/ui",
-                            "Node.js", "Express", "Django",
-                            "PostgreSQL", "MongoDB", "Docker", "AWS",
-                            "Python", "Pandas", "TensorFlow"
-                        ].map((tech, i) => (
-                            <span key={i} className="px-3 py-1 text-lg  rounded-md text-sm ">
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-     </CardContent>
+                    {/* Full Stack Card */}
+                    <Card className="border-2 border-muted ">
+                        <CardHeader>
+                            <div className="flex items-center gap-2">
+                                <Layers className="w-5 h-5 text-primary" />
+                                <CardTitle>Desarrollo Full Stack</CardTitle>
+                            </div>
+                            <CardDescription>Arquitecturas escalables y modernas</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex flex-wrap gap-2">
+                            {["React", "Next.js", "Node.js", "Django", "PostgreSQL", "MongoDB", "DigitalOcean", "Docker", "TailwindCSS"].map((skill) => (
+                                <Badge key={skill} variant="outline" className="px-3 py-1 border-primary/30">
+                                    {skill}
+                                </Badge>
+                            ))}
+                        </CardContent>
                     </Card>
-                    <div className="space-y-6 mb-6">
-
-                        <p className="leading-relaxed font-medium text-white">
-                            Si deseas apoyarme, colaborar o compartir ideas, estaré encantado de aprender y crecer contigo.
-                        </p>
-
-                        <Button  size="lg" asChild className=" font-extrabold  text-1xl tracking-tight text-balance   w-full">
-                            <Link href="#contacto">Conectemos</Link>
-                        </Button>
-                    </div>
                 </div>
-                {/* Imagen lateral */}
+            </section>
 
+            {/* Formación Actual */}
+            <section>
+                <Card className="bg-secondary/30 border-none bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
+                    <CardContent className="pt-6 space-y-4">
+                        <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-white text-sm">
+                            <Terminal className="w-4 h-4" />
+                            <span>Formación Actual</span>
+                        </div>
+                        <p className="text-lg italic leading-relaxed">
+                            "Actualmente desarrollo mis habilidades en análisis masivo de datos y aprendizaje automático
+                            en la VIU, con el firme objetivo de aplicar inteligencia artificial al servicio de los desafíos
+                            sociales y tecnológicos actuales."
+                        </p>
+                    </CardContent>
+                </Card>
+            </section>
 
-            </div>
-        </section>
+            {/* Call to Action */}
+            <footer className="flex flex-col items-center gap-6 py-8">
+                <p className="text-center text-muted-foreground">
+                    ¿Deseas apoyarme, colaborar o compartir ideas? Estaré encantado de aprender y crecer contigo.
+                </p>
+                <Button size="lg" className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white px-8 h-14 text-lg font-semibold shadow-[0_0_20px_rgba(79,70,229,0.4)] ">
+                    Conectemos !
+                </Button>
+            </footer>
+        </div>
     )
 }

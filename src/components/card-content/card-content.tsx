@@ -10,13 +10,14 @@ import { Card, CardHeader, CardDescription, CardTitle, CardFooter, CardContent }
 
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import Link from 'next/link'
 
 export const Card_Content = () => {
     const [liked, setLiked] = useState<boolean>(false)
 
     return (
 
-        <Card className='border-none relative rounded-xl '>
+        <Card className='border-none relative rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl'>
             
             <CardContent>
                 <div className='flex h-60 items-center justify-center '>
@@ -47,17 +48,22 @@ export const Card_Content = () => {
                         <MessageCircleIcon className='size-4' />
                         1.4K
                     </Button>
-                    <Button className='' variant='ghost' size='sm'>
-                        <RepeatIcon className='size-4' />
-                        669
-                    </Button>
-                    <Button className='' variant='ghost' size='sm'>
-                        <SendIcon className='size-4' />
-                        1.1K
-                    </Button>
+                   
                 </div>
+
+                <Button asChild variant="secondary" size={"lg"} className=" font-extrabold  hover:bg-indigo-700   ">
+                    <Link href="" target="_blank" className="  ">
+                        Ver contenido
+                    </Link>
+                </Button>
             </CardFooter>
         </Card>
     )
 }
+
+
+
+
+
+
 

@@ -53,9 +53,7 @@ export default function Page() {
             <div className="flex justify-center">
                 <div className="w-screen md:w-88 lg:w-88">
                     <Field>
-                        <FieldDescription>
-                            Selecciona el tipo de contenido
-                        </FieldDescription>
+                        
                         <Select>
                             <SelectTrigger>
                                 <SelectValue placeholder="Tipo de contenido" />

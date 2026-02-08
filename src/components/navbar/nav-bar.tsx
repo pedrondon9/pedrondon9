@@ -28,8 +28,7 @@ export function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center space-x-2 mr-8">
 
-                    <span className="font-bold text-xl ">pedrondong</span>
-                    <Badge variant="secondary" className="hidden sm:inline-flex text-neutral-300">AI & Full Stack</Badge>
+                    <span className="font-bold text-xl text-indigo-400 ">pedrondong.com</span>
 
                 </Link>
 

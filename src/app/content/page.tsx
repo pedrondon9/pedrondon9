@@ -3,6 +3,7 @@
 import { Card_Content } from "@/components/card-content/card-content"
 import { EmptyComponent } from "@/components/empty"
 import { TypographyH2 } from "@/components/text-sub-title"
+import { Empty } from "@/components/ui/empty"
 
 import {
     Field,
@@ -20,20 +21,17 @@ import {
 
 export default function Page() {
     return (
-        <section className="container grid-cols-1 grid gap-10 mx-auto px-1">
-
+        <section className="container grid-cols-1 grid gap-10 mx-auto px-1 ">
             <div className="">
                 <TypographyH2 title={'Contenido'} />
             </div>
 
             <div className="flex justify-center">
-                <div className="w-screen md:w-88 lg:w-88">
-                    <Field>
-                        <FieldDescription>
-                            Selecciona el tipo de contenido
-                        </FieldDescription>                        
-                        <Select>
-                            <SelectTrigger>
+                <div className="w-screen md:w-88 lg:w-88 ">
+                    <Field className="">
+                        
+                        <Select >
+                            <SelectTrigger className="bg-indigo-600">
                                 <SelectValue placeholder="Tipo de contenido" />
                             </SelectTrigger>
                             <SelectContent>
@@ -47,7 +45,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
                 <Card_Content />
                 <Card_Content />
                 <Card_Content />

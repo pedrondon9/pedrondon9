@@ -32,13 +32,13 @@ export const BannerHome = () => {
           <Button size="lg" className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white px-8 h-14 text-lg font-semibold shadow-[0_0_20px_rgba(79,70,229,0.4)]">
             ¿Quieres contactarme? <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-          <Button size="lg" variant="outline" className="rounded-full mt-10 sm:mt-0 border-slate-700 hover:bg-slate-900 px-8 h-14 text-lg">
+          <Button size="lg" variant="outline" className="rounded-full border-slate-700 hover:bg-slate-900 px-8 h-14 text-lg">
             Ver Proyectos
           </Button>
         </div>
 
         {/* Tecnologías destacadas en el banner */}
-        <div className="pt-12 flex flex-wrap justify-center gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="pt-6 flex flex-wrap justify-center gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           <div className="flex items-center gap-2"><BrainCircuit size={20} /> <span className="text-sm font-mono">TensorFlow</span></div>
           <div className="flex items-center gap-2"><Code2 size={20} /> <span className="text-sm font-mono">Next.js</span></div>
           <div className="flex items-center gap-2"><Sparkles size={20} /> <span className="text-sm font-mono">IBM Certified</span></div>

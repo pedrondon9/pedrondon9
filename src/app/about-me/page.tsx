@@ -103,7 +103,7 @@ export default function AboutStory() {
                 <Card className="bg-secondary/30 border-none bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-white text-sm">
-                            <Terminal className="w-4 h-4" />
+                            <Terminal className="w-4 h-4 " />
                             <span>Formación Actual</span>
                         </div>
                         <p className="text-lg italic leading-relaxed">

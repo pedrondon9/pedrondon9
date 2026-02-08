@@ -11,18 +11,13 @@ export const BannerHome = () => {
       {/* Efecto de fondo sutil (Glow) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent blur-3xl" />
 
-      <div className="container relative z-10 mx-auto px-6 flex flex-col items-center text-center space-y-8">
+      <div className="container relative z-10 mx-auto px-2 flex flex-col items-center text-center space-y-8">
         
-        {/* Etiqueta superior */}
-        <Badge variant="outline" className="px-4 py-1 border-indigo-500/50 text-indigo-400 bg-indigo-500/5 backdrop-blur-sm">
-          <Sparkles className="w-3 h-3 mr-2" />
-          Disponible para nuevos desafíos
-        </Badge>
 
         {/* Título Principal */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Ciencia de Datos</span> y el Desarrollo <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Full Stack</span> 
-        se encuentran aquí
+        
         </h1>
 
         {/* Descripción / Subtítulo */}

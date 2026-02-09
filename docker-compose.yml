@@ -5,8 +5,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     restart: always # Si el servidor se cae, Docker lo levanta solo
-    environment:
-      - NODE_ENV=production
-      # Aquí puedes añadir tus variables de entorno (.env)
-      - DATABASE_URL=tu_url_aqui
+    # Esto le dice a Docker que lea las variables de tu archivo .env local
+    env_file:
+      - .env
 

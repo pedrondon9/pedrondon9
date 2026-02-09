@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int       @id @default(autoincrement()) @map("usuario_id")
+  name         String    @map("nombre") @db.VarChar(100)
+  email        String    @unique @db.VarChar(150)
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime  @default(now()) @map("fecha_registro") @db.Timestamp(6)
+  projects     Project[]
+
+  @@map("usuarios")
+}
+
+model Project {
+  id           Int          @id @default(autoincrement()) @map("proyecto_id")
+  userId       Int          @map("usuario_id")
+  title        String       @map("titulo") @db.VarChar(200)
+  description  String?      @map("descripcion")
+  category     TipoProyecto @map("categoria")
+  technologies String[]     @map("tecnologias")
+  projectLink  String?      @map("link_proyecto")
+  githubLink   String?      @map("enlace_github")
+  createdAt    DateTime     @default(now()) @map("fecha_creacion") @db.Date
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("proyectos")
+}
+
+enum TipoProyecto {
+  FullStack   @map("Full Stack")
+  DataScience @map("Data Science")
+  Frontend
+  Backend
+  Mobile
+  AIML        @map("AI/ML")
+
+  @@map("tipo_proyecto")
+}

@@ -117,9 +117,7 @@ export default function RootLayout({ children }: LayoutProps) {
                 disableTransitionOnChange
               >
                 <div className="flex min-h-screen  flex-col">
-                  <Navbar />
                   {children}
-                  <Footer />
                 </div>
                 <Toaster
                   position="top-center"

@@ -15,6 +15,7 @@ import { Rocket } from 'lucide-react'
 import { ThemeToggle } from "./theme-toggle"
 import SideNav from './side-nav'
 import { Badge } from '../ui/badge'
+import { Button } from '../ui/button'
 
 
 
@@ -36,7 +37,7 @@ export function Navbar() {
                 <NavigationMenu className="hidden md:flex">
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <Link href="/content" legacyBehavior passHref>
+                            <Link href="/home/content"  passHref>
                                 <NavigationMenuLink
                                     className={`${navigationMenuTriggerStyle()} ${pathname === '/home/content' ? 'text-primary' : ''
                                         }`}
@@ -48,7 +49,7 @@ export function Navbar() {
 
 
                         <NavigationMenuItem className=''>
-                            <Link href="/block" legacyBehavior passHref>
+                            <Link href="/home/block" legacyBehavior passHref>
                                 <NavigationMenuLink
                                     className={`${navigationMenuTriggerStyle()} ${pathname === '/home/block' ? 'text-primary' : ''
                                         }`}
@@ -59,7 +60,7 @@ export function Navbar() {
                         </NavigationMenuItem>
 
                         <NavigationMenuItem>
-                            <Link href="/about-me" legacyBehavior passHref>
+                            <Link href="/home/about-me" legacyBehavior passHref>
                                 <NavigationMenuLink
                                     className={`${navigationMenuTriggerStyle()} ${pathname === '/home/about-me' ? 'text-primary' : ''
                                         }`}
@@ -69,10 +70,19 @@ export function Navbar() {
                             </Link>
                         </NavigationMenuItem>
                     </NavigationMenuList>
+                    
                 </NavigationMenu>
 
                 {/* Spacer */}
                 <div className="flex-1" />
+
+                {/* Desktop Actions */}
+                <div className="hidden md:flex items-center space-x-4">
+                    {/* --- BOTÓN DE LOGIN --- */}
+                    <Button variant="outline" asChild>
+                        <Link href="/login"> Iniciar</Link>
+                    </Button>
+                </div>
 
                 {/* Desktop Actions */}
                 <div className="hidden md:hidden  items-center space-x-4 ">

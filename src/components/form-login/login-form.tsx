@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+
 import {
     Card,
     CardContent,
@@ -47,6 +48,7 @@ export function LoginForm({
             password: "",
         },
     });
+
 
 
     return (
@@ -96,7 +98,7 @@ export function LoginForm({
                                 error={errors.password}
                                 children={
                                     <Link
-                                        href="#"
+                                        href="/forgot-password"
                                         className="ml-auto text-sm underline-offset-4 hover:underline"
                                     >
                                         Cambiar contraseña ?

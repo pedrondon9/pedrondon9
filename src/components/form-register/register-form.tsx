@@ -105,14 +105,7 @@ export function RegisterForm({
                                 register={register}
                                 placeholder="Tu contraseña"
                                 error={errors.password}
-                                children={
-                                    <Link
-                                        href="#"
-                                        className="ml-auto text-sm underline-offset-4 hover:underline"
-                                    >
-                                        Cambiar contraseña ?
-                                    </Link>
-                                }
+                               
                             />
                             <Field className="">
                                 <Button type="submit" disabled={isSubmitting}>Registrarse</Button>

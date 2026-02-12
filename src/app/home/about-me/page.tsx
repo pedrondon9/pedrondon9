@@ -61,7 +61,7 @@ export default function AboutStory() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     {/* Data Science & IA Card */}
-                    <Card className="border-2 border-primary/20  bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
+                    <Card className="border-2 border-muted ">
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <BrainCircuit className="w-5 h-5 text-primary" />
@@ -89,7 +89,7 @@ export default function AboutStory() {
                         </CardHeader>
                         <CardContent className="flex flex-wrap gap-2">
                             {["React", "Next.js", "Node.js", "Django", "PostgreSQL", "MongoDB", "DigitalOcean", "Docker", "TailwindCSS"].map((skill) => (
-                                <Badge key={skill} variant="outline" className="px-3 py-1 border-primary/30">
+                                <Badge key={skill} variant="secondary" className="px-3 py-1 font-semibold">
                                     {skill}
                                 </Badge>
                             ))}

@@ -9,6 +9,7 @@ import ProjectsGrid from "@/components/table/table-work"
 import { TypographyH2 } from "@/components/text-sub-title"
 import { Empty } from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
+import { Suspense } from "react"
 
 const projects = [
     {
@@ -46,7 +47,9 @@ const projects = [
 export default function Page() {
     return (
         <>
+        <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Cargando...</div>}>
             <Navbar />
+        </Suspense>
             <div className="container grid-cols-1 grid gap-10 mx-auto px-1">
                 <BannerHome />
 
@@ -61,10 +64,10 @@ export default function Page() {
                 </div>
                 <Empty className="" />
 
-                <div className="">
+                <div className=" hidden">
                     <TypographyH2 title={'Trabajos reciente'} />
                 </div>
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 ">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 hidden">
                     {projects.map((project, index) => (
                         <div key={index}>
                             <ProjectsGrid

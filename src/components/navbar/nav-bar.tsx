@@ -16,10 +16,11 @@ import { ThemeToggle } from "./theme-toggle"
 import SideNav from './side-nav'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
-
+import { useSession, signIn, signOut } from "next-auth/react";
 
 
 export function Navbar() {
+    const { data: session, status } = useSession();
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
 
@@ -37,9 +38,9 @@ export function Navbar() {
                 <NavigationMenu className="hidden md:flex">
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <Link href="/home/content"  passHref>
+                            <Link href="/home/content" passHref>
                                 <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/content' ? 'text-primary' : ''
+                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/content' ? 'bg-muted' : ''
                                         }`}
                                 >
                                     Contenido
@@ -48,10 +49,10 @@ export function Navbar() {
                         </NavigationMenuItem>
 
 
-                        <NavigationMenuItem className=''>
+                        <NavigationMenuItem className='hidden'>
                             <Link href="/home/block" legacyBehavior passHref>
                                 <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/block' ? 'text-primary' : ''
+                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/block' ? 'bg-muted' : ''
                                         }`}
                                 >
                                     Trabajos
@@ -62,7 +63,7 @@ export function Navbar() {
                         <NavigationMenuItem>
                             <Link href="/home/about-me" legacyBehavior passHref>
                                 <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/about-me' ? 'text-primary' : ''
+                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/about-me' ? 'bg-muted' : ''
                                         }`}
                                 >
                                     Sobre mi
@@ -70,7 +71,7 @@ export function Navbar() {
                             </Link>
                         </NavigationMenuItem>
                     </NavigationMenuList>
-                    
+
                 </NavigationMenu>
 
                 {/* Spacer */}
@@ -78,11 +79,21 @@ export function Navbar() {
 
                 {/* Desktop Actions */}
                 <div className="hidden md:flex items-center space-x-4">
-                    {/* --- BOTÓN DE LOGIN --- */}
+                    {session ? (
+                        <>
+                            <span className="text-sm">Hola, {session.user?.name}</span>
+                            <Button variant="outline" onClick={() => signOut()}>Salir</Button>
+                        </>
+                    ) : (
+                        
                     <Button variant="outline" asChild>
                         <Link href="/login"> Iniciar</Link>
                     </Button>
+                    )}
                 </div>
+
+
+
 
                 {/* Desktop Actions */}
                 <div className="hidden md:hidden  items-center space-x-4 ">
@@ -94,6 +105,6 @@ export function Navbar() {
                 <SideNav isOpen={isOpen} setIsOpen={setIsOpen} />
 
             </div>
-        </div>
+        </div >
     )
 }

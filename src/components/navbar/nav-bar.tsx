@@ -33,45 +33,65 @@ export function Navbar() {
                     <span className="font-bold   ">pedrondong.com</span>
 
                 </Link>
-
                 {/* Desktop Navigation */}
-                <NavigationMenu className="hidden md:flex">
+                <NavigationMenu className="hidden md:flex" >
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <Link href="/home/content" passHref>
-                                <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/content' ? 'bg-muted' : ''
-                                        }`}
-                                >
+                            <NavigationMenuLink
+                                asChild
+
+                                className={`${navigationMenuTriggerStyle()} ${pathname === '/home/content' ? 'bg-muted' : ''
+                                    }`}
+                            >
+                                <Link href="/home/content">
+
                                     Contenido
-                                </NavigationMenuLink>
-                            </Link>
+
+                                </Link>
+                            </NavigationMenuLink>
                         </NavigationMenuItem>
-
-
                         <NavigationMenuItem className='hidden'>
-                            <Link href="/home/block" legacyBehavior passHref>
-                                <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/block' ? 'bg-muted' : ''
-                                        }`}
-                                >
+                            <NavigationMenuLink
+                                asChild
+                                className={`${navigationMenuTriggerStyle()} ${pathname === '/home/block' ? 'bg-muted' : ''
+                                    }`}
+                            >
+                                <Link href="/home/block" >
+
                                     Trabajos
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
+                                </Link>
+                            </NavigationMenuLink>
 
+                        </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <Link href="/home/about-me" legacyBehavior passHref>
+                            <NavigationMenuLink
+                                asChild
+                                className={`${navigationMenuTriggerStyle()} ${pathname === '/home/about-me' ? 'bg-muted' : ''
+                                    }`}
+                            >
+                                <Link href="/home/about-me">
+
+                                    Sobre mi
+                                </Link>
+                            </NavigationMenuLink>
+
+                        </NavigationMenuItem>
+                        {session && (
+                            <NavigationMenuItem className=''>
                                 <NavigationMenuLink
-                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/about-me' ? 'bg-muted' : ''
+                                    asChild
+                                    className={`${navigationMenuTriggerStyle()} ${pathname === '/home/admin-content' ? 'bg-muted' : ''
                                         }`}
                                 >
-                                    Sobre mi
-                                </NavigationMenuLink>
-                            </Link>
-                        </NavigationMenuItem>
-                    </NavigationMenuList>
+                                    <Link href="/home/admin-content">
 
+                                        admin. tus contenidos
+                                    </Link>
+                                </NavigationMenuLink>
+
+                            </NavigationMenuItem>
+                        )}
+                    </NavigationMenuList>
                 </NavigationMenu>
 
                 {/* Spacer */}
@@ -85,10 +105,10 @@ export function Navbar() {
                             <Button variant="outline" onClick={() => signOut()}>Salir</Button>
                         </>
                     ) : (
-                        
-                    <Button variant="outline" asChild>
-                        <Link href="/login"> Iniciar</Link>
-                    </Button>
+
+                        <Button variant="outline" asChild>
+                            <Link href="/login"> Iniciar</Link>
+                        </Button>
                     )}
                 </div>
 

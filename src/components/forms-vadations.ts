@@ -20,6 +20,37 @@ export const signInSchema = z.object({
 });
 
 
+export const addContentSchema = z.object({
+  title: z
+    .string()
+    .min(1, "El título es requerido.")
+    .max(200, "El título no puede superar los 200 caracteres.")
+    .trim(),
+
+  description: z
+    .string()
+    .min(8, "La descripción debe tener al menos 8 caracteres.")
+    .trim()
+    .optional()
+    .or(z.literal("")),
+
+  // RELACIÓN MUCHOS A MUCHOS: Array de IDs numéricos para la tabla Category
+  categoryIds: z
+    .array(z.number())
+    .min(1, "Selecciona al menos una categoría."),
+
+  // ARRAY NATIVO: Transforma el string del input "React, Nextjs" en ["React", "Nextjs"]
+technologies: z
+    .string()
+    .min(1, "Las tecnologías son requeridas."),
+  // Validaciones de URLs (permanecen iguales)
+  projectLink: z.string().url("URL no válida").optional().or(z.literal("")),
+  projectVideo: z.string().url("URL no válida").optional().or(z.literal("")),
+  githubLink: z.string().url("URL no válida").optional().or(z.literal("")),
+  imageLink: z.string().url("URL no válida").optional().or(z.literal("")),
+});
+
+
 export const emailSchema = z.object({
   email: z
     .string()

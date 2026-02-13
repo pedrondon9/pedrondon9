@@ -41,30 +41,31 @@ model VerificationToken {
 }
 
 model Project {
-  id           Int          @id @default(autoincrement()) @map("proyecto_id")
-  userId       Int          @map("usuario_id")
-  title        String       @map("titulo") @db.VarChar(200)
-  description  String?      @map("descripcion")
-  category     TipoProyecto @map("categoria")
-  technologies String[]     @map("tecnologias")
-  projectLink  String?      @map("link_proyecto")
-  projectVideo  String?      @map("video_proyecto")
-  githubLink   String?      @map("enlace_github")
-  createdAt    DateTime     @default(now()) @map("fecha_creacion") @db.Date
-  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           Int        @id @default(autoincrement()) @map("proyecto_id")
+  userId       Int        @map("usuario_id")
+  title        String     @map("titulo") @db.VarChar(200)
+  description  String?    @map("descripcion")
+  
+  // RELACIÓN MUCHOS A MUCHOS
+  categories   Category[] @relation("ProjectToCategory")
+  
+  technologies String[]   @map("tecnologias")
+  imageLink    String?    @map("link_imagen")
+  projectLink  String?    @map("link_proyecto")
+  projectVideo String?    @map("video_proyecto")
+  githubLink   String?    @map("enlace_github")
+  createdAt    DateTime   @default(now()) @map("fecha_creacion") @db.Date
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("proyectos")
 }
 
-enum TipoProyecto {
-  FullStack   @map("Full Stack")
-  DataScience @map("Data Science")
-  Frontend
-  Backend
-  Mobile
-  AIML        @map("AI/ML")
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique // Ej: "Full Stack", "AI/ML"
+  projects Project[] @relation("ProjectToCategory")
 
-  @@map("tipo_proyecto")
+  @@map("categorias")
 }
 
 model PasswordResetToken {

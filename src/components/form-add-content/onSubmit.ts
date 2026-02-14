@@ -2,78 +2,108 @@ import z from "zod";
 import { addContentSchema, registerSchema } from "../forms-vadations";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import imageCompression from "browser-image-compression";
 
 type addContentFormData = z.infer<typeof addContentSchema>;
 
 export const onSubmit = async (data: z.output<typeof addContentSchema>) => {
     try {
-        const { title, categoryIds, technologies } = data;
-        const technologiesArray = technologies.split(",").map(t => t.trim()).filter(Boolean);
+        const formData = new FormData();
 
-        if (!title || !categoryIds || !technologies) {
-            toast.error("Campos incompletos", {
-                description: "Por favor, completa todos los campos requeridos.",
-            });
-            return;
-        }
+        // --- 1. PROCESAR TECNOLOGÍAS (De String a Array de Prisma) ---
+        // Limpiamos espacios en blanco y filtramos elementos vacíos
+        const techArray = data.technologies
+            .split(',')
+            .map((t: string) => t.trim())
+            .filter((t: string) => t !== "");
 
-        const response = await axios({
-            method: "POST",
-            url: "/api/auth/register",
-            data
+        // Agregamos al FormData (algunos backends prefieren JSON stringify para arrays)
+        formData.append("technologies", JSON.stringify(techArray));
+
+        // --- 2. CAMPOS BÁSICOS ---
+        formData.append("title", data.title ?? "");
+        formData.append("description", data.description ?? "");
+        formData.append("projectLink", data.projectLink ?? "");
+        formData.append("githubLink", data.githubLink ?? "");
+        formData.append("projectVideo", data.projectVideo ?? "");
+
+        // IMPORTANTE: Enviar cada ID individualmente con el mismo nombre
+        data.categoryIds.forEach((id: number) => {
+            formData.append("categoryIds", id.toString());
         });
 
-        if (response.status === 200 || response.status === 201) {
-            toast.success("Registro exitoso", {
-                description: response.data.message || "Tu cuenta ha sido creada exitosamente. Por favor, verifica tu correo para activar tu cuenta.",
-            });
-            return response.data;
+        // --- 3. OPTIMIZACIÓN DE IMÁGENES ---
+        if (data.images && data.images.length > 0) {
+            const options = {
+                maxSizeMB: 0.8,          // Comprimir a menos de 1MB
+                maxWidthOrHeight: 1920, // Resolución Full HD max
+                useWebWorker: true,
+            };
+
+            toast.info("Optimizando imágenes...");
+
+            for (const file of data.images) {
+                const compressedFile = await imageCompression(file, options);
+                // "files" es el nombre que buscará tu backend (ej. multer.array('files'))
+                formData.append("files", compressedFile, compressedFile.name);
+            }
         }
 
+        // --- 4. ENVÍO AL API ---
+        const response = await fetch("/api/content/add", {
+            method: "POST",
+            body: formData, // El navegador configura automáticamente el Content-Type a multipart/form-data
+        });
+
+        if (!response.ok) throw new Error("Error al guardar el contenido");
+
+        toast.success("¡Contenido publicado con éxito!");
+        // Opcional: router.push('/dashboard') o reset()
+
     } catch (error) {
-        // CAPTURA ESPECÍFICA DE ERRORES DE AXIOS
+
         if (axios.isAxiosError(error)) {
-            const axiosError = error as AxiosError;
+            // Extraemos la data de la respuesta de forma segura
+            const serverResponse = error.response?.data;
+            const statusCode = error.response?.status;
 
-            // El servidor responde con NextResponse.json({ error: "mensaje" })
-            const serverError = axiosError.response?.data as { error?: string } | undefined;
-            const statusCode = axiosError.response?.status;
+            // IMPORTANTE: Imprimimos para depurar qué está llegando realmente
+            console.log("Status Code:", statusCode);
+            console.log("Server Response Data:", serverResponse);
 
-            // Mensaje personalizado según el código de estado
-            if (statusCode === 400) {
-                toast.error("Error en el registro", {
-                    description: serverError?.error || "Datos no válidos. Verifica tu información.",
+            // Buscamos el mensaje de error. Tu servidor envía { error: "mensaje" }
+            const errorMessage = typeof serverResponse === 'object' && serverResponse !== null && 'error' in serverResponse
+                ? (serverResponse as any).error
+                : null;
+
+            if (statusCode === 401) {
+                toast.error("Acceso denegado", {
+                    // Aquí capturamos exactamente el string "No estas autorizado..." enviado por tu API
+                    description: errorMessage || "Tu sesión ha expirado o no tienes permisos.",
                 });
             }
-            else if (statusCode === 409) {
-                toast.error("Correo ya registrado", {
-                    description: serverError?.error || "Este correo electrónico ya está en uso.",
+            else if (statusCode === 400) {
+                toast.error("Datos inválidos", {
+                    description: errorMessage || "Revisa los campos del formulario.",
                 });
             }
             else if (statusCode === 500) {
-                toast.error("Error del servidor", {
-                    description: "No pudimos procesar tu registro. Intenta más tarde.",
+                toast.error("Error crítico", {
+                    description: "El servidor tuvo un problema interno.",
                 });
             }
             else {
-                // Error genérico del servidor
-                toast.error("Error de registro", {
-                    description: serverError?.error || "Ocurrió un error al registrar tu cuenta.",
+                toast.error("Error inesperado", {
+                    description: errorMessage || "Ocurrió un error al procesar la solicitud.",
                 });
             }
+        } else {
+            // Errores que no son de Axios (ej: error de ejecución de JS)
+            toast.error("Error de sistema", {
+                description: "Ocurrió un error inesperado en la aplicación.",
+            });
+        }
 
-            console.error("Error en registro:", {
-                status: statusCode,
-                data: serverError,
-                message: axiosError.message
-            });
-        }
-        else {
-            // Error no relacionado con Axios (errores de red, CORS, etc.)
-            toast.error("Error de conexión", {
-                description: "No se pudo conectar con el servidor. Verifica tu internet.",
-            });
-            console.error("Error no-axios:", error);
-        }
+
     }
 };

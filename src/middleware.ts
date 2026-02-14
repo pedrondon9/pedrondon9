@@ -10,7 +10,10 @@ export default auth((req) => {
 
   // Definir rutas
   const isProtectedRoute = nextUrl.pathname.startsWith("/dashboard") || 
-                           nextUrl.pathname.startsWith("/admin")
+                           nextUrl.pathname.startsWith("/admin") ||
+                           nextUrl.pathname.startsWith("/home/add-content") ||
+                           nextUrl.pathname.startsWith("/home/admin-content") 
+                           
   const isAuthRoute = nextUrl.pathname.startsWith("/login") || 
                       nextUrl.pathname.startsWith("/register") ||
                       nextUrl.pathname.startsWith("/forgot-password") ||

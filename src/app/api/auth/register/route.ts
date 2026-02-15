@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const token = uuidv4();
     const expires = new Date(Date.now() + 3600 * 1000);
-    const verificationLink = `${process.env.NEXTAUTH_URL}/api/auth/verify?token=${token}`;
+    const verificationLink = `${process.env.AUTH_URL}/api/auth/verify?token=${token}`;
 
     // 3. Guardar en DB
     await prisma.$transaction([

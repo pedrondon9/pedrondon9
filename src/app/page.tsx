@@ -5,11 +5,14 @@ import { Card_Content } from "@/components/card-content/card-content"
 import { EmptyComponent } from "@/components/empty"
 import { Footer } from "@/components/footer/footer"
 import { Navbar } from "@/components/navbar/nav-bar"
+import { SpinnerEmpty } from "@/components/spinnerEmpty"
 import ProjectsGrid from "@/components/table/table-work"
 import { TypographyH2 } from "@/components/text-sub-title"
+// removed unused CardContent import
 import { Empty } from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
-import { Suspense } from "react"
+import axios from "axios"
+import { Suspense, useEffect, useState } from "react"
 
 const projects = [
     {
@@ -44,25 +47,97 @@ const projects = [
     },
 
 ]
+
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    technologies: string[];
+    images?: [{
+        url: string,
+        id: number,
+        projectId: number
+    }]
+    categories: string[];
+    githubLink: string;
+    projectLink: string;
+    userId: number;
+
+}
+interface Category {
+    id: number;
+    name: string;
+}
 export default function Page() {
+
+    const [previews, setPreviews] = useState<string[]>([]);
+
+    const [data, setData] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            // Con Axios, la data ya viene parseada en res.data
+            const res = await axios.get<Project[]>("/api/content/get");
+            console.log("Respuesta de Axios:", res);
+            setData(res.data);
+        } catch (err: any) {
+            console.error("Error con Axios:", err);
+            setError("No se pudieron cargar las categorías");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+
+        fetchData();
+    }, []);
     return (
         <>
-        <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Cargando...</div>}>
-            <Navbar />
-        </Suspense>
+            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Cargando...</div>}>
+                <Navbar />
+            </Suspense>
             <div className="container grid-cols-1 grid gap-10 mx-auto px-1">
                 <BannerHome />
 
                 <div className="">
                     <TypographyH2 title={'Contenido reciente'} />
                 </div>
-                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <Card_Content />
-                    <Card_Content />
-                    <Card_Content />
-                    <Card_Content />
-                </div>
-                <Empty className="" />
+                {!loading ? (
+                    data.length > 0 ? (
+                        <div className="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+
+                            {data.map((project) => (
+                                <div key={project.id} className="break-inside-avoid">
+                                    <Card_Content
+                                        key={project.id}
+                                        title={project.title}
+                                        description={project.description}
+                                        technologies={project.technologies}
+                                        images={project.images}
+                                        categories={project.categories}
+                                        githubLink={project.githubLink}
+                                        projectLink={project.projectLink}
+                                    />
+                                </div>
+
+                            ))}
+                        </div>
+
+                    ) : error ? (
+                        <EmptyComponent description={error} text={"Error al cargar el contenido"} />
+                    ) : (
+                        <EmptyComponent description={"No hay contenido disponible"} text={"No hay contenido"} />
+                    )
+                ) : (
+                    <div className=" flex justify-center item-center">
+                        <SpinnerEmpty />
+
+                    </div>
+                )}
 
                 <div className=" hidden">
                     <TypographyH2 title={'Trabajos reciente'} />

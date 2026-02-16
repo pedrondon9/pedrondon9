@@ -1,7 +1,9 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Card_Content } from "@/components/card-content/card-content"
 import { EmptyComponent } from "@/components/empty"
+const CardContent = Card_Content as any
 import { TypographyH2 } from "@/components/text-sub-title"
 import { Empty } from "@/components/ui/empty"
 
@@ -17,9 +19,53 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import axios from "axios"
+import { SpinnerEmpty } from "@/components/spinnerEmpty"
 
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    technologies: string;
+    images: string[];
+    categories: Category[];
+    githubLink: string;
+    projectLink: string;
+    userId: number;
+
+}
+interface Category {
+    id: number;
+    name: string;
+}
 
 export default function Page() {
+    const [previews, setPreviews] = useState<string[]>([]);
+
+    const [data, setData] = useState<Project[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            // Con Axios, la data ya viene parseada en res.data
+            const res = await axios.get<Project[]>("/api/content/get");
+            console.log("Respuesta de Axios:", res);
+            setData(res.data);
+        } catch (err: any) {
+            console.error("Error con Axios:", err);
+            setError("No se pudieron cargar las categorías");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+
+
+        fetchData();
+    }, []);
     return (
         <section className="container grid-cols-1 grid gap-10 mx-auto px-1 ">
             <div className="">
@@ -29,7 +75,7 @@ export default function Page() {
             <div className="flex justify-center">
                 <div className="w-screen md:w-88 lg:w-88 ">
                     <Field className="">
-                        
+
                         <Select >
                             <SelectTrigger className="bg-indigo-600">
                                 <SelectValue placeholder="Tipo de contenido" />
@@ -45,16 +91,41 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
-                <Card_Content />
-                <Card_Content />
-                <Card_Content />
-                <Card_Content />
-                <Card_Content />
-            </div>
-            <div>
-                <EmptyComponent description={""} text={"Todavia no hay contenido"} />
-            </div>
+
+
+
+            {!loading ? (
+                data.length > 0 ? (
+                    <div className="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+
+                        {data.map((project) => (
+
+                            <CardContent
+                                key={project.id}
+                                title={project.title}
+                                description={project.description}
+                                technologies={project.technologies}
+                                images={project.images}
+                                categories={project.categories}
+                                githubLink={project.githubLink}
+                                projectLink={project.projectLink}
+                            />
+
+                        ))}
+                    </div>
+
+                ) : error ? (
+                    <EmptyComponent description={error} text={"Error al cargar el contenido"} />
+                ) : (
+                    <EmptyComponent description={"No hay contenido disponible"} text={"No hay contenido"} />
+                )
+            ) : (
+                <div className=" flex justify-center item-center">
+                    <SpinnerEmpty />
+
+                </div>
+            )}
+
 
 
 

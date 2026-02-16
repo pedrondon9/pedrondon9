@@ -9,6 +9,11 @@
 
 // cmd + shift + p en cualquier archivo .ts o tsx seguido de TypeScript: Restart TS Server
 
+// brew services start postgresql
+// Stop Service: brew services stop postgresql.
+// Restart Service: brew services restart postgresql.
+// Connect to Database: psql -U $(whoami) postgres
+
 generator client {
   provider = "prisma-client-js"
 }

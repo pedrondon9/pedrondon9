@@ -10,8 +10,8 @@ export function Footer() {
     const year = new Date().getFullYear()
 
     return (
-        <footer className="w-full border-t mt-10 bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
-            <Card className="border-0 shadow-none rounded-none bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl ">
+        <footer className="w-full border-t mt-10">
+            <Card className="border-0 shadow-none rounded-none bg-transparent">
                 <CardContent className="container mx-auto py-10 px-4">
                     <div className="grid grid-cols-1 gap-8">
 

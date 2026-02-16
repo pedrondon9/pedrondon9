@@ -13,11 +13,9 @@ export async function GET(
         const resolvedParams = await params;
         const id = resolvedParams.id;
             
-        console.log("ID recibido y resuelto en el backend:", id);
 
 
         if (!id) {
-            console.log("ID no proporcionado en los parámetros");
             return NextResponse.json({ error: "ID no proporcionado" }, { status: 400 });
         }
 
@@ -30,10 +28,6 @@ export async function GET(
             },
         });
 
-        console.log("Proyecto encontrado:", project);
-
-
-
 
         if (!project) {
             return NextResponse.json({ error: "Proyecto no encontrado" }, { status: 404 });
@@ -42,7 +36,6 @@ export async function GET(
         return NextResponse.json(project);
 
     } catch (error) {
-        console.error("Error al obtener el proyecto:", error);
         return NextResponse.json({ error: "Error de servidor" }, { status: 500 });
     }
 }

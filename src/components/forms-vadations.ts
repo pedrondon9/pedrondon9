@@ -23,8 +23,7 @@ export const signInSchema = z.object({
 export const addContentSchema = z.object({
   title: z
     .string()
-    .min(1, "El título es requerido.")
-    .max(20, "El título no puede superar los 20 caracteres.")
+    .min(10, "El título es requerido.")
     .trim(),
 
   description: z
@@ -42,7 +41,8 @@ export const addContentSchema = z.object({
   // ARRAY NATIVO: Transforma el string del input "React, Nextjs" en ["React", "Nextjs"]
   technologies: z
     .string()
-    .min(1, "Las tecnologías son requeridas."),
+    .optional()
+    .or(z.literal("")),
   // Validaciones de URLs (permanecen iguales)
   projectLink: z
     .string()
@@ -66,8 +66,7 @@ export const addContentSchema = z.object({
 export const editContentSchema = z.object({
   title: z
     .string()
-    .min(1, "El título es requerido.")
-    .max(20, "El título no puede superar los 20 caracteres.")
+    .min(10, "El título es requerido.")
     .trim(),
 
   description: z
@@ -86,7 +85,8 @@ export const editContentSchema = z.object({
   // ARRAY NATIVO: Transforma el string del input "React, Nextjs" en ["React", "Nextjs"]
   technologies: z
     .string()
-    .min(1, "Las tecnologías son requeridas."),
+    .optional()
+    .or(z.literal("")),
   // Validaciones de URLs (permanecen iguales)
   projectLink: z
     .string()

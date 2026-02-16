@@ -48,7 +48,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Registro exitoso. Revisa tu correo para verificar tu cuenta." }, { status: 201 });
 
   } catch (error) {
-    console.error(error);
     return NextResponse.json({ error: "Error en el servidor" }, { status: 500 });
   }
 }

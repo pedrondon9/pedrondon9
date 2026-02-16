@@ -6,7 +6,6 @@ import { auth } from "@/auth";
 
 export async function POST(req: Request) {
 
-    console.log(req.formData) // DEBUG: Verificar que recibimos el FormData correctamente
 
 
   try {
@@ -15,7 +14,6 @@ export async function POST(req: Request) {
     const session = await auth(); 
     if (!session || !session.user?.id) {
 
-        console.log(session)
       return NextResponse.json({ error: "No estas autorizado para realizar esta acción" }, { status: 401 });
     }
     const userId = session.user.id; // Ya tienes el ID porque lo configuraste en
@@ -89,7 +87,6 @@ export async function POST(req: Request) {
     return NextResponse.json(newProject, { status: 201 });
 
   } catch (error: any) {
-    console.error("DEBUG PRISMA ERROR:", error);
     
     // Manejo específico de errores de Prisma (IDs no encontrados)
     if (error.code === 'P2025') {

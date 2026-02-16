@@ -1,12 +1,11 @@
 "use client"
 import { useEffect, useState } from "react"
-const CardContent = Card_Content as any
-import { Card_Content } from "@/components/card-content/card-content"
 import { DialogDemo } from "@/components/dialog-form-register/dialog-register"
 import { EmptyComponent } from "@/components/empty"
 import { TypographyH2 } from "@/components/text-sub-title"
 import { Button } from "@/components/ui/button"
 import { Empty } from "@/components/ui/empty"
+
 
 import {
     Field,
@@ -23,6 +22,10 @@ import {
 
 import axios from "axios"
 import { SpinnerEmpty } from "@/components/spinnerEmpty"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { CardContentAdmin } from "@/components/card-content-admin/card-content"
+const CardAdmin = CardContentAdmin as any
 
 interface Project {
     id: number;
@@ -68,67 +71,70 @@ export default function Page() {
     }, []);
 
     return (
-        <section className="container grid-cols-1 grid gap-10 mx-auto px-1 ">
+        <>
+            <section className="container grid-cols-1 grid gap-10 mx-auto px-1 ">
 
-            <div className="">
-                <TypographyH2 title={'Contenido'} />
-            </div>
-
-
-
-
-            <div className="flex justify-center items-end gap-4"> {/* Añadimos flex y gap */}
-                <div className="w-full max-w-sm"> {/* Ajustado para que sea responsive */}
-                    <Field>
-                        <Select>
-                            <SelectTrigger className="bg-slate-900 border-slate-800">
-                                <SelectValue placeholder="Tipo de contenido" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="engineering">Ciencia de datos</SelectItem>
-                                <SelectItem value="design">Inteligencia artificial</SelectItem>
-                                <SelectItem value="fullstack">Full Stack</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </Field>
+                <div className="">
+                    <TypographyH2 title={'Contenido'} />
                 </div>
 
-                {/* BOTÓN AGREGAR */}
-                <DialogDemo />
-            </div>
 
-            {!loading ? (
-                data.length > 0 ? (
-                    <div className="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
 
-                        {data.map((project) => (
 
-                            <CardContent
-                                key={project.id}
-                                title={project.title}
-                                description={project.description}
-                                technologies={project.technologies}
-                                images={project.images}
-                                categories={project.categories}
-                                githubLink={project.githubLink}
-                                projectLink={project.projectLink}
-                            />
-
-                        ))}
+                <div className="flex justify-center items-end gap-4"> {/* Añadimos flex y gap */}
+                    <div className="w-full max-w-sm"> {/* Ajustado para que sea responsive */}
+                        <Field>
+                            <Select>
+                                <SelectTrigger className="bg-slate-900 border-slate-800">
+                                    <SelectValue placeholder="Tipo de contenido" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="engineering">Ciencia de datos</SelectItem>
+                                    <SelectItem value="design">Inteligencia artificial</SelectItem>
+                                    <SelectItem value="fullstack">Full Stack</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </Field>
                     </div>
 
-                ) : error ? (
-                    <EmptyComponent description={error} text={"Error al cargar el contenido"} />
-                ) : (
-                    <EmptyComponent description={"No hay contenido disponible"} text={"No hay contenido"} />
-                )
-            ) : (
-                <div className=" flex justify-center item-center">
-                    <SpinnerEmpty />
-
+                    {/* BOTÓN AGREGAR */}
+                    <DialogDemo />
                 </div>
-            )}
-          
-        </section>
+
+                {!loading ? (
+                    data.length > 0 ? (
+                        <div className="columns-1 md:columns-2 lg:columns-4 gap-6 space-y-6">
+
+                            {data.map((project) => (
+
+                                <CardAdmin
+                                    id={project.id}
+                                    key={project.id}
+                                    title={project.title}
+                                    description={project.description}
+                                    technologies={project.technologies}
+                                    images={project.images}
+                                    categories={project.categories}
+                                    githubLink={project.githubLink}
+                                    projectLink={project.projectLink}
+                                />
+
+                            ))}
+                        </div>
+
+                    ) : error ? (
+                        <EmptyComponent description={error} text={"Error al cargar el contenido"} />
+                    ) : (
+                        <EmptyComponent description={"No hay contenido disponible"} text={"No hay contenido"} />
+                    )
+                ) : (
+                    <div className=" flex justify-center item-center">
+                        <SpinnerEmpty />
+
+                    </div>
+                )}
+
+            </section>
+        </>
     )
 }

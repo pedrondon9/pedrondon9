@@ -95,13 +95,16 @@ export function EditContentForm({ className, id, ...props }: React.ComponentProp
 
             const res = await axios.get(`/api/content/get/${id}`);
 
+
             if (res.status === 200) {
-                const parsed = JSON.parse(res.data.technologies)
-                const techString = Array.isArray(parsed) ? parsed.join(", ") : res.data.technologies;
+                console.log(res.data)
+
+                //const parsed = Array.isArray(res.data.technologies) ? JSON.parse(res.data.technologies):res.data.technologies
+                //const techString = Array.isArray(parsed) ? parsed.join(", ") : res.data.technologies;
                 reset({
                     title: res.data.title || "",
                     description: res.data.description || "",
-                    technologies: techString || "",
+                    technologies: res.data.technologies || "",
                     // Convertimos el array de objetos de Prisma a array de IDs numéricos
                     categoryIds: res.data.categories?.map((c: any) => c.id) || [],
                     projectLink: res.data.projectLink || "",
@@ -217,14 +220,7 @@ export function EditContentForm({ className, id, ...props }: React.ComponentProp
                                 rows={3} // Reducido para no saturar
                             />
 
-                            <FormField
-                                id="technologies"
-                                label="Tecnologías"
-                                type="text"
-                                placeholder="React, Next.js, Tailwind..."
-                                register={register}
-                                error={errors.technologies}
-                            />
+                          
 
                         </FieldGroup>
 

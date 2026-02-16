@@ -11,10 +11,10 @@ export const onSubmit = async (data: z.output<typeof editContentSchema>, project
         const formData = new FormData();
 
         // --- 1. PROCESAR TECNOLOGÍAS ---
-        const techArray = data.technologies
+        const techArray = data.technologies?data.technologies
             .split(',')
             .map((t: string) => t.trim())
-            .filter((t: string) => t !== "");
+            .filter((t: string) => t !== ""):"";
 
         formData.append("technologies", JSON.stringify(techArray));
 
@@ -76,7 +76,6 @@ export const onSubmit = async (data: z.output<typeof editContentSchema>, project
         const statusCode = error.response?.status || error.status;
         const errorMessage = error.response?.data?.error || error.message;
 
-        console.error("Error Detail:", errorMessage);
 
         if (statusCode === 401) {
             toast.error("No autorizado", { description: "Inicia sesión nuevamente." });

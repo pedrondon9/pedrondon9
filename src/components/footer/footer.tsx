@@ -16,7 +16,7 @@ export function Footer() {
                     <div className="grid grid-cols-1 gap-8">
 
 
-                        <div className="flex justify-center flex-col gap-10">
+                        <div className="flex justify-center flex-col gap-10 hidden">
                             <div className="flex justify-center">
                                 <div className="flex space-x-6">
 

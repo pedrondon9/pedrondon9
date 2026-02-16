@@ -28,7 +28,7 @@ export function Navbar() {
         <div className="border-b mb-10 px-1">
             <div className="flex h-16 items-center container mx-auto">
                 {/* Logo */}
-                <Link href="/" className="flex items-center space-x-2 mr-8 border py-1 px-3 rounded-full bg-indigo-600">
+                <Link href="/" className="flex items-center space-x-3 mr-8 border py-1 px-3 rounded-full bg-indigo-700">
 
                     <span className="font-bold   ">pedrondong.com</span>
 

@@ -19,7 +19,7 @@ import {
 
 export default function AboutStory() {
     return (
-        <div className="max-w-4xl mx-auto p-2 space-y-12 bg-background text-foreground">
+        <div className="max-w-4xl mx-auto py-2 px-3 space-y-12 bg-background text-foreground">
 
             {/* Hero Section / Mi Historia */}
             <section className="space-y-6">
@@ -58,10 +58,10 @@ export default function AboutStory() {
                     <h2 className="text-3xl font-bold tracking-tight  text-indigo-400">Stack Tecnológico</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6 bg-secondary/30 bg-gradient-to-br from-slate-900 to-slate-950">
 
                     {/* Data Science & IA Card */}
-                    <Card className="border-2 border-muted ">
+                    <Card className=" bg-transparent border-none">
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <BrainCircuit className="w-5 h-5 text-primary" />
@@ -78,8 +78,8 @@ export default function AboutStory() {
                         </CardContent>
                     </Card>
 
-                    {/* Full Stack Card */}
-                    <Card className="border-2 border-muted ">
+                    {/* Full Stack Card */}  
+                    <Card className="bg-transparent border-none"> 
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <Layers className="w-5 h-5 text-primary" />

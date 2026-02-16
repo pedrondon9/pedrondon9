@@ -137,14 +137,7 @@ export function AddContentForm({ className, ...props }: React.ComponentProps<"di
                                 rows={3} // Reducido para no saturar
                             />
 
-                            <FormField
-                                id="technologies"
-                                label="Tecnologías"
-                                type="text"
-                                placeholder="React, Next.js, Tailwind..."
-                                register={register}
-                                error={errors.technologies}
-                            />
+                           
 
                         </FieldGroup>
 

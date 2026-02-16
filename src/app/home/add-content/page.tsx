@@ -22,23 +22,28 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Plus } from "lucide-react"
+import { ArrowLeft, Plus, Share2, Star } from "lucide-react"
+import Link from "next/link"
 
 
 export default function Page() {
     return (
-        <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+        <>
+            
+            <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+                {/* HEADER */}
 
-            <div className="flex w-full max-w-sm flex-col gap-6">
-                <FieldGroup>
-                    <FieldSeparator className="">
-                        Agregar nuevo contenido
-                    </FieldSeparator></FieldGroup>
+                <div className="flex w-full max-w-sm flex-col gap-6">
+                    <FieldGroup>
+                        <FieldSeparator className="">
+                            Agregar nuevo contenido
+                        </FieldSeparator></FieldGroup>
 
 
-                <AddContentForm />
+                    <AddContentForm />
 
+                </div>
             </div>
-        </div>
+        </>
     )
 }

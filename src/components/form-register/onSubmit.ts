@@ -72,7 +72,6 @@ export const onSubmit = async (data: registerFormData) => {
             toast.error("Error de conexión", {
                 description: "No se pudo conectar con el servidor. Verifica tu internet.",
             });
-            console.error("Error no-axios:", error);
         }
     }
 };

@@ -52,9 +52,9 @@ type SideNavProps = {
 
 const items = [
 
-    { url: "/content", title: "Contenido", icon: ContainerIcon, isActive: true },
-    { url: "/block", title: "Trabajos", icon: BlocksIcon },
-    { url: "/about-me", title: "Sobre mi", icon: User },
+    { url: "/home/content", title: "Contenido", icon: ContainerIcon, isActive: true },
+    { url: "/home/admin-content", title: "Gestión de proyectos", icon: BlocksIcon },
+    { url: "/home/about-me", title: "Sobre mi", icon: User },
 ]
 
 
@@ -121,7 +121,7 @@ export default function SideNav({ isOpen, setIsOpen }: SideNavProps) {
 
 
                 {/* Footer del Sidebar */}
-                <SheetFooter className="p-6 border-t mt-auto hidden">
+                <SheetFooter className="p-6 border-t mt-auto ">
                     <div className="w-full space-y-4">
                         {/* User Profile */}
                         <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">

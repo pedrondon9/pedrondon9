@@ -113,6 +113,7 @@ export default function Page() {
                             {data.map((project) => (
                                 <div key={project.id} className="break-inside-avoid">
                                     <Card_Content
+                                        id={project.id}
                                         key={project.id}
                                         title={project.title}
                                         description={project.description}

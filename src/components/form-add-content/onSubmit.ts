@@ -12,10 +12,10 @@ export const onSubmit = async (data: z.output<typeof addContentSchema>) => {
 
         // --- 1. PROCESAR TECNOLOGÍAS (De String a Array de Prisma) ---
         // Limpiamos espacios en blanco y filtramos elementos vacíos
-        const techArray = data.technologies
+        const techArray = data.technologies?data.technologies
             .split(',')
             .map((t: string) => t.trim())
-            .filter((t: string) => t !== "");
+            .filter((t: string) => t !== ""):'';
 
         // Agregamos al FormData (algunos backends prefieren JSON stringify para arrays)
         formData.append("technologies", JSON.stringify(techArray));
@@ -67,9 +67,6 @@ export const onSubmit = async (data: z.output<typeof addContentSchema>) => {
             const serverResponse = error.response?.data;
             const statusCode = error.response?.status;
 
-            // IMPORTANTE: Imprimimos para depurar qué está llegando realmente
-            console.log("Status Code:", statusCode);
-            console.log("Server Response Data:", serverResponse);
 
             // Buscamos el mensaje de error. Tu servidor envía { error: "mensaje" }
             const errorMessage = typeof serverResponse === 'object' && serverResponse !== null && 'error' in serverResponse

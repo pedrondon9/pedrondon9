@@ -101,6 +101,7 @@ export default function Page() {
                         {data.map((project) => (
 
                             <CardContent
+                                id={project.id}
                                 key={project.id}
                                 title={project.title}
                                 description={project.description}

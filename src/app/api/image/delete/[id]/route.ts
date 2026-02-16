@@ -27,10 +27,8 @@ export async function DELETE(
 
         try {
             await fs.unlink(filePath); // Intenta borrar el archivo
-            console.log("Archivo físico eliminado:", filePath);
         } catch (err) {
             // Si el archivo no existe en el disco, seguimos adelante para limpiar la DB
-            console.error("El archivo no existía en el disco, pero se borrará de la DB");
         }
 
         // 3. Eliminar el registro de la base de datos
@@ -41,7 +39,6 @@ export async function DELETE(
         return NextResponse.json({ message: "Imagen eliminada de la DB y del disco" });
 
     } catch (error) {
-        console.error("Error en el proceso de borrado:", error);
         return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 });
     }
 }

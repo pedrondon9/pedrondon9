@@ -9,15 +9,17 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth
 
   // Definir rutas
-  const isProtectedRoute = nextUrl.pathname.startsWith("/dashboard") || 
-                           nextUrl.pathname.startsWith("/admin") ||
-                           nextUrl.pathname.startsWith("/home/add-content") ||
-                           nextUrl.pathname.startsWith("/home/admin-content") 
-                           
-  const isAuthRoute = nextUrl.pathname.startsWith("/login") || 
-                      nextUrl.pathname.startsWith("/register") ||
-                      nextUrl.pathname.startsWith("/forgot-password") ||
-                      nextUrl.pathname.startsWith("/new-password")
+  const isProtectedRoute = nextUrl.pathname.startsWith("/dashboard") ||
+    nextUrl.pathname.startsWith("/admin") ||
+    nextUrl.pathname.startsWith("/home/add-content") ||
+    nextUrl.pathname.startsWith("/home/admin-content") ||
+    nextUrl.pathname.startsWith("/home/edit-content") ||
+    nextUrl.pathname.startsWith("/register")
+
+
+  const isAuthRoute = nextUrl.pathname.startsWith("/login") ||
+    nextUrl.pathname.startsWith("/forgot-password") ||
+    nextUrl.pathname.startsWith("/new-password")
 
   // 1. Si es una ruta de autenticación (Login/Register)
   if (isAuthRoute) {

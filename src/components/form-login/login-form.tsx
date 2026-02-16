@@ -63,7 +63,7 @@ export function LoginForm({
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FieldGroup>
-                            <Field>
+                            <Field className="hidden">
 
                                 <Button variant="outline" type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -107,8 +107,8 @@ export function LoginForm({
                             />
                             <Field className="">
                                 <Button type="submit" disabled={isSubmitting}>Iniciar sesion</Button>
-                                <FieldDescription className="text-center ">
-                                    Si no tienes una cuenta ? <Link href="/register">Registrate</Link>
+                                <FieldDescription className="text-center hidden">
+                                    Si no tienes una cuenta ? <Link href="/register-hhhhhh">Registrate</Link>
                                 </FieldDescription>
                             </Field>
                         </FieldGroup>

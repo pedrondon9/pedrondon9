@@ -62,6 +62,7 @@ export const onSubmit = async (data: z.output<typeof addContentSchema>) => {
 
     } catch (error) {
 
+
         if (axios.isAxiosError(error)) {
             // Extraemos la data de la respuesta de forma segura
             const serverResponse = error.response?.data;
@@ -95,6 +96,8 @@ export const onSubmit = async (data: z.output<typeof addContentSchema>) => {
                 });
             }
         } else {
+                    console.error("Error en onSubmit:", error);
+
             // Errores que no son de Axios (ej: error de ejecución de JS)
             toast.error("Error de sistema", {
                 description: "Ocurrió un error inesperado en la aplicación.",

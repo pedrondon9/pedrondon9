@@ -51,7 +51,7 @@ export async function POST(req: Request) {
 
     // --- 3. PROCESAR TECNOLOGÍAS (ARRAY DE STRINGS) ---
     const technologiesRaw = formData.get("technologies") as string;
-    const technologies = JSON.parse(technologiesRaw || "[]");
+    const technologies = ['a','b'];
 
     // --- 4. CREAR PROYECTO EN PRISMA ---
     const newProject = await prisma.project.create({
@@ -87,6 +87,8 @@ export async function POST(req: Request) {
     return NextResponse.json(newProject, { status: 201 });
 
   } catch (error: any) {
+
+    console.error("Error en API /content/add:", error);
     
     // Manejo específico de errores de Prisma (IDs no encontrados)
     if (error.code === 'P2025') {

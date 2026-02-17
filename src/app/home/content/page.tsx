@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Card_Content } from "@/components/card-content/card-content"
+import { CardContents } from "@/components/card-content/card-content"
 import { EmptyComponent } from "@/components/empty"
-const CardContent = Card_Content as any
+const CardContentS = CardContents as any
 import { TypographyH2 } from "@/components/text-sub-title"
 import { Empty } from "@/components/ui/empty"
 
@@ -100,17 +100,19 @@ export default function Page() {
 
                         {data.map((project) => (
 
-                            <CardContent
-                                id={project.id}
-                                key={project.id}
-                                title={project.title}
-                                description={project.description}
-                                technologies={project.technologies}
-                                images={project.images}
-                                categories={project.categories}
-                                githubLink={project.githubLink}
-                                projectLink={project.projectLink}
-                            />
+                            <div key={project.id} className="break-inside-avoid">
+                                <CardContentS
+                                    id={project.id}
+                                    key={project.id}
+                                    title={project.title}
+                                    description={project.description}
+                                    technologies={project.technologies}
+                                    images={project.images}
+                                    categories={project.categories}
+                                    githubLink={project.githubLink}
+                                    projectLink={project.projectLink}
+                                />
+                            </div>
 
                         ))}
                     </div>

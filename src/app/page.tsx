@@ -1,7 +1,7 @@
 "use client"
 
 import { BannerHome } from "@/components/banner/banner-home"
-import { Card_Content } from "@/components/card-content/card-content"
+import {  CardContents } from "@/components/card-content/card-content"
 import { EmptyComponent } from "@/components/empty"
 import { Footer } from "@/components/footer/footer"
 import { Navbar } from "@/components/navbar/nav-bar"
@@ -112,7 +112,7 @@ export default function Page() {
 
                             {data.map((project) => (
                                 <div key={project.id} className="break-inside-avoid">
-                                    <Card_Content
+                                    <CardContents
                                         id={project.id}
                                         key={project.id}
                                         title={project.title}

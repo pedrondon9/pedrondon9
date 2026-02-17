@@ -1,8 +1,6 @@
 "use client"
 
-import { Card_Content } from "@/components/card-content/card-content"
-import { DialogDemo } from "@/components/dialog-form-register/dialog-register"
-import { EmptyComponent } from "@/components/empty"
+
 import { AddContentForm } from "@/components/form-add-content/add-content-form"
 import { TypographyH2 } from "@/components/text-sub-title"
 import { Button } from "@/components/ui/button"
@@ -28,8 +26,8 @@ import Link from "next/link"
 
 export default function Page() {
     return (
-        <>
-            
+        
+
             <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
                 {/* HEADER */}
 
@@ -37,13 +35,14 @@ export default function Page() {
                     <FieldGroup>
                         <FieldSeparator className="">
                             Agregar nuevo contenido
-                        </FieldSeparator></FieldGroup>
+                        </FieldSeparator>
+                    </FieldGroup>
 
 
                     <AddContentForm />
 
                 </div>
             </div>
-        </>
+        
     )
 }

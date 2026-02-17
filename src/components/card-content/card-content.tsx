@@ -28,14 +28,14 @@ type CardContentProps = {
     projectLink?: string
 }
 
-export const Card_Content: FC<CardContentProps> = ({ title, description, technologies, id, images, categories, githubLink, projectLink }) => {
+export const CardContents: FC<CardContentProps> = ({ title, description, technologies, id, images, categories, githubLink, projectLink }) => {
     const [liked, setLiked] = useState<boolean>(false)
     const mainImage = images && images.length > 0 ? images[0].url : "/placeholder.png";
     return (
-            <Link href={`/home/projects/${id}`}>
+        <Link href={`/home/projects/${id}`} className=''>
 
-        <Card className='border-muted border-2  relative rounded-xl bg-gradient-to-br from-slate-900 to-slate-950  overflow-hidden '>
-                <CardContent className='px-2'>
+            <Card className='border-muted border-1  relative rounded-xl bg-gradient-to-br from-slate-900 to-slate-950  overflow-hidden '>
+                <CardContent className='px-0'>
                     <div className='flex h-auto w-full   justify-center items-center'>
                         <div className='flex   items-center '>
 
@@ -50,39 +50,59 @@ export const Card_Content: FC<CardContentProps> = ({ title, description, technol
                 </CardContent>
 
                 <CardHeader className='px-2'>
-                    <CardTitle>{title}</CardTitle>
+                    <CardTitle className='text-xl'>{title}</CardTitle>
                     <CardDescription>
                         {description}
                     </CardDescription>
                 </CardHeader>
+                <div className="flex justify-between items-center w-full ">
+                    <div className="flex gap-1">
+                        <Button variant='ghost' size='sm' onClick={() => setLiked(!liked)}>
+                            <HeartIcon className={cn('size-4 mr-1', liked && 'fill-destructive stroke-destructive')} />
+                            0K
+                        </Button>
+                        <Button variant='ghost' size='sm'>
+                            <MessageCircleIcon className='size-4 mr-1' />
+                            0K
+                        </Button>
+                    </div>
 
+                    {/* BOTONES NUEVOS: Editar, Desactivar, Borrar */}
+                    <div className="flex gap-4">
+                        
+                    </div>
+                </div>
                 <CardFooter className='flex flex-col gap-4 px-2'>
                     {/* Estadísticas e Interacción */}
-                    <div className="flex justify-between items-center w-full hidden">
-                        <div className="flex gap-1">
-                            <Button variant='ghost' size='sm' onClick={() => setLiked(!liked)}>
-                                <HeartIcon className={cn('size-4 mr-1', liked && 'fill-destructive stroke-destructive')} />
-                                2.1K
-                            </Button>
-                            <Button variant='ghost' size='sm'>
-                                <MessageCircleIcon className='size-4 mr-1' />
-                                1.4K
-                            </Button>
-                        </div>
 
-                        {/* BOTONES NUEVOS: Editar, Desactivar, Borrar */}
-                        <div className="flex gap-4">
-                            <Button variant="outline" size="icon" className="size-8">
-                                <Pencil className="size-4" />
-                            </Button>
-                            <Button variant="outline" size="icon" className="size-8 text-yellow-500">
-                                <PowerOff className="size-4" />
-                            </Button>
-                            <Button variant="outline" size="icon" className="size-8 text-destructive">
-                                <Trash2 className="size-4" />
-                            </Button>
+                    {/* Enlaces externos */}
+                    {(githubLink || projectLink) && (
+                        <div className="flex gap-2 w-full">
+                            {githubLink && (
+                                <Button
+                                    size="lg"
+                                    asChild
+                                    className="flex-1 relative z-20 bg-indigo-700"
+                                >
+                                    <Link href={githubLink} target="_blank" rel="noopener noreferrer">
+                                        GitHub
+                                    </Link>
+                                </Button>
+                            )}
+                            {projectLink && (
+                                <Button
+                                    size="lg"
+                                    asChild
+                                    className="flex-1 relative z-20 bg-transparent border border-muted"
+                                >
+                                    <Link href={projectLink} target="_blank" rel="noopener noreferrer">
+                                        Demo
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
-                    </div>
+                    )}
+
 
                     {/* Botón Principal */}
                     <Button asChild variant="secondary" size="lg" className="w-full font-extrabold bg-muted">
@@ -91,7 +111,7 @@ export const Card_Content: FC<CardContentProps> = ({ title, description, technol
                         </Link>
                     </Button>
                 </CardFooter>
-        </Card>            
+            </Card>
         </Link>
 
     )

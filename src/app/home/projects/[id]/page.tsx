@@ -18,7 +18,6 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
     include: { images: true, categories: true },
   });
 
-  console.log(project)
 
   if (!project) notFound();
 
@@ -84,15 +83,15 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
         <Tabs defaultValue="details" className="w-full space-y-6">
           <div className="bg-[#0f172a] p-1.5 rounded-xl border border-slate-800/60 inline-flex shadow-sm">
             <TabsList className="bg-transparent h-10 p-0 space-x-1 border-none shadow-none">
-              <TabsTrigger value="details" className="rounded-xl text-xl px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Detalles</TabsTrigger>
-              <TabsTrigger value="gallery" className="rounded-xl text-xl px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Galería</TabsTrigger>
-              <TabsTrigger value="comments" className="rounded-xl text-xl px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Comentarios</TabsTrigger>
+              <TabsTrigger value="details" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Detalles</TabsTrigger>
+              <TabsTrigger value="gallery" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Galería</TabsTrigger>
+              <TabsTrigger value="comments" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Comentarios</TabsTrigger>
             </TabsList>
           </div>
 
           <TabsContent value="details" className="mt-0 outline-none">
             <div className="bg-[#0f172a] rounded-xl border border-slate-800/60 p-8 shadow-xl">
-              <h3 className="text-3xl font-bold mb-4 text-white">Acerca del Proyecto</h3>
+              <h3 className="text-2xl font-bold mb-4 text-white">Acerca del Proyecto</h3>
               <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>
               
             </div>
@@ -100,7 +99,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
 
           <TabsContent value="gallery" className="mt-0 outline-none">
             <div className="bg-[#0f172a] rounded-3xl border border-slate-800/60 p-8 shadow-xl">
-              <h3 className="text-xl font-bold mb-6 text-white">Capturas de Pantalla</h3>
+              <h3 className="text-2xl font-bold mb-6 text-white">Capturas de Pantalla</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {project.images.map((img) => (
                   <div key={img.id} className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-black aspect-video">
@@ -134,7 +133,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
                 {/* Info del Proyecto */}
                 <div className="flex-1 space-y-6 text-center lg:text-left">
                   <div className="space-y-2">
-                    <h3 className="text-2xl md:text-3xl font-black tracking-tight text-white">
+                    <h3 className="text-2xl md:text-2xl font-black tracking-tight text-white">
                       ¿Quieres explorar el código?
                     </h3>
                     <p className="text-slate-400 text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
@@ -173,20 +172,20 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="flex items-center gap-4 group/item">
                   <div className="h-12 w-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
-                    <User className="h-5 w-5 text-slate-500 group-hover/item:text-indigo-400" />
+                    <User className="h-5 w-10 text-slate-500 group-hover/item:text-indigo-400" />
                   </div>
                   <div>
-                    <p className="text-[14px] font-black uppercase tracking-tighter text-slate-500">Autor</p>
+                    <p className="text-[13px] font-black uppercase tracking-tighter text-slate-500">Autor</p>
                     <p className="text-md text-slate-200 font-semibold tracking-tight">Admin del Proyecto</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4 group/item ">
-                  <div className="h-12 w-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
+                  <div className="h-12 w-18 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
                     <ShieldCheck className="h-5 w-5 text-slate-500 group-hover/item:text-indigo-400" />
                   </div>
                   <div>
-                    <p className="text-[14px] font-black uppercase tracking-tighter text-slate-500">Licencia</p>
+                    <p className="text-[13px] font-black uppercase tracking-tighter text-slate-500">Licencia</p>
                     <p className="text-md text-slate-200 font-semibold tracking-tight">MIT Open Source</p>
                   </div>
                 </div>

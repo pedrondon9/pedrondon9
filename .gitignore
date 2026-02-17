@@ -17,6 +17,8 @@
 /.next/
 /out/
 
+/public/uploads
+
 # production
 /build
 
@@ -35,6 +37,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+
 
 # typescript
 *.tsbuildinfo

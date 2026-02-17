@@ -64,24 +64,25 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
 
 
                         <Button className="bg-indigo-600 hover:bg-indigo-700 h-10 px-4">
-                            <Pencil className="size-4" />
-
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
-                                Editar
+
+                                <Pencil className="size-4" />
+
+
                             </Link>
                         </Button>
                         <Button className="bg-primary-600 hover:bg-primary-700 h-10 px-4">
-                            <PowerOff className="size-4" />
-
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
-                                Desactivar
+
+                                <PowerOff className="size-4" />
+
                             </Link>
                         </Button>
                         <Button className="bg-red-600 hover:bg-red-700 h-10 px-4">
-                            <Trash2 className="size-4" />
-
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
-                                Borrar
+
+                                <Trash2 className="size-4" />
+
                             </Link>
                         </Button>
 

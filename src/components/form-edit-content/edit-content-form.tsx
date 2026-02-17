@@ -38,7 +38,7 @@ interface Category {
 type Project = {
     title?: string
     description?: string
-    technologies?: string[]
+    //technologies?: string[]
     images?: [{
         url: string,
         id: number,
@@ -77,7 +77,7 @@ export function EditContentForm({ className, id, ...props }: React.ComponentProp
         defaultValues: {
             title: "",
             description: "",
-            technologies: "",
+            //technologies: "",
             categoryIds: [],
             projectLink: "",
             projectVideo: "",
@@ -104,7 +104,7 @@ export function EditContentForm({ className, id, ...props }: React.ComponentProp
                 reset({
                     title: res.data.title || "",
                     description: res.data.description || "",
-                    technologies: res.data.technologies || "",
+                    //technologies: res.data.technologies || "",
                     // Convertimos el array de objetos de Prisma a array de IDs numéricos
                     categoryIds: res.data.categories?.map((c: any) => c.id) || [],
                     projectLink: res.data.projectLink || "",

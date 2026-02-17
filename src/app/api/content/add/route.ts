@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         const absolutePath = path.join(uploadDir, fileName);
         
         await writeFile(absolutePath, buffer);
-        savedPaths.push(`/uploads/projects/${fileName}`);
+        savedPaths.push(`uploads/projects/${fileName}`);
       }
     }
 
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
         // Relación Uno a Muchos (Nueva tabla de Imágenes)
         images: {
           create: savedPaths.map((path) => ({
-            url: path,
+            url: `${process.env.AUTH_URL}/${path}`,
           })),
         },
       },

@@ -31,8 +31,9 @@ type CardContentProps = {
 export const CardContents: FC<CardContentProps> = ({ title, description, technologies, id, images, categories, githubLink, projectLink }) => {
     const [liked, setLiked] = useState<boolean>(false)
     const mainImage = images && images.length > 0 ? images[0].url : "/placeholder.png";
+
+    console.log(mainImage,'main image')
     return (
-        <Link href={`/home/projects/${id}`} className=''>
 
             <Card className='border-muted border-1  relative rounded-xl bg-gradient-to-br from-slate-900 to-slate-950  overflow-hidden '>
                 <CardContent className='px-0'>
@@ -40,7 +41,7 @@ export const CardContents: FC<CardContentProps> = ({ title, description, technol
                         <div className='flex   items-center '>
 
                             <img
-                                src={mainImage}
+                                src={mainImage}  
                                 alt={title || "Imagen del proyecto"}
                                 className="w-full h-auto object-contain "
                                 loading="lazy"
@@ -112,7 +113,6 @@ export const CardContents: FC<CardContentProps> = ({ title, description, technol
                     </Button>
                 </CardFooter>
             </Card>
-        </Link>
 
     )
 }

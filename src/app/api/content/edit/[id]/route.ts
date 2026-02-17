@@ -49,7 +49,7 @@ export async function PATCH(
             data: {
                 title: formData.get("title") as string,
                 description: formData.get("description") as string,
-                technologies: (formData.get("technologies") as string)?.split(",").map(t => t.trim()).filter(Boolean) || [], // Si ahora es string directo
+                technologies: ["a","b"], // Aquí debes decidir cómo manejar las tecnologías (reemplazar o mantener las anteriores)
                 projectLink: formData.get("projectLink") as string,
                 githubLink: formData.get("githubLink") as string,
                 projectVideo: formData.get("projectVideo") as string,

@@ -118,7 +118,7 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
                         )}
                         {githubLink && (
                             <Button
-                                size="lg"
+                                size="lg"  
                                 variant="outline"
                                 asChild
                                 className="flex-1 relative z-20 border-slate-700 "

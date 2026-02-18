@@ -16,6 +16,7 @@ import {
     Layers,
     Cpu
 } from "lucide-react";
+import { DialogContact } from "@/components/dialog-form-register/dialog-contact";
 
 export default function AboutStory() {
     return (
@@ -24,7 +25,7 @@ export default function AboutStory() {
             {/* Hero Section / Mi Historia */}
             <section className="space-y-6">
                 <div className="space-y-2">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl ">
                         Mi historia
                     </h1>
                     <p className="text-xl text-muted-foreground font-medium">
@@ -55,10 +56,10 @@ export default function AboutStory() {
             {/* Stack Tecnológico */}
             <section className="space-y-8">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-3xl font-bold tracking-tight  text-indigo-400">Stack Tecnológico</h2>
+                    <h2 className="text-3xl font-bold tracking-tight  ">Stack Tecnológico</h2>
                 </div>
 
-                <div className="grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6 bg-secondary/30 bg-gradient-to-br from-slate-900 to-slate-950">
+                <div className="border-white/20 border-1 grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6 bg-secondary/30 bg-gradient-to-br from-slate-900 to-slate-950">
 
                     {/* Data Science & IA Card */}
                     <Card className=" bg-transparent border-none">
@@ -99,7 +100,7 @@ export default function AboutStory() {
             </section>
 
             {/* Formación Actual */}
-            <section>
+            <section className="border-white/20 border-1 rounded-md">
                 <Card className="bg-secondary/30 border-none bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-white text-sm">
@@ -120,9 +121,7 @@ export default function AboutStory() {
                 <p className="text-center text-muted-foreground">
                     ¿Deseas apoyarme, colaborar o compartir ideas? Estaré encantado de aprender y crecer contigo.
                 </p>
-                <Button size="lg" className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white px-8 h-14 text-lg font-semibold shadow-[0_0_20px_rgba(79,70,229,0.4)] ">
-                    Conectemos !
-                </Button>
+                <DialogContact/>
             </footer>
         </div>
     )

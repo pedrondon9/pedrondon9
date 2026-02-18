@@ -21,7 +21,7 @@ export async function PATCH(
 
         // 2. Procesar IMÁGENES NUEVAS (Local)
         // Nota: En el frontend las mandas como "images" o "files", asegúrate que coincida
-        const files = formData.getAll("files") as File[]; 
+        const files = formData.getAll("files") as File[];
         const savedPaths: string[] = [];
 
         if (files.length > 0 && files[0].size > 0) { // Validar que no sean archivos vacíos
@@ -34,7 +34,7 @@ export async function PATCH(
                 const fileName = `${Date.now()}-${file.name.replace(/\s+/g, "_")}`;
                 const absolutePath = path.join(uploadDir, fileName);
                 await writeFile(absolutePath, buffer);
-                savedPaths.push(`/uploads/projects/${fileName}`);
+                savedPaths.push(`uploads/projects/${fileName}`);
             }
         }
 
@@ -49,7 +49,7 @@ export async function PATCH(
             data: {
                 title: formData.get("title") as string,
                 description: formData.get("description") as string,
-                technologies: ["a","b"], // Aquí debes decidir cómo manejar las tecnologías (reemplazar o mantener las anteriores)
+                technologies: ["a", "b"], // Aquí debes decidir cómo manejar las tecnologías (reemplazar o mantener las anteriores)
                 projectLink: formData.get("projectLink") as string,
                 githubLink: formData.get("githubLink") as string,
                 projectVideo: formData.get("projectVideo") as string,
@@ -57,14 +57,14 @@ export async function PATCH(
                 // Actualizar Categorías: 
                 // set: [] limpia las anteriores y conecta las nuevas para evitar duplicados
                 categories: {
-                    set: [], 
+                    set: [],
                     connect: categoryIds.map((id) => ({ id })),
                 },
 
                 // Agregar imágenes nuevas (sin borrar las anteriores)
                 images: {
                     create: savedPaths.map((path) => ({
-                        url: path,
+                        url: `${process.env.AUTH_URL}/${path}`,
                     })),
                 },
             },

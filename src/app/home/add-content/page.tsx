@@ -28,10 +28,10 @@ export default function Page() {
     return (
         
 
-            <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+            <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-2 md:p-4">
                 {/* HEADER */}
 
-                <div className="flex w-full max-w-sm flex-col gap-6">
+                <div className="flex w-full max-w-md flex-col gap-6">
                     <FieldGroup>
                         <FieldSeparator className="">
                             Agregar nuevo contenido

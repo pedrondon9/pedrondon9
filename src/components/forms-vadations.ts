@@ -107,6 +107,24 @@ export const editContentSchema = z.object({
     .or(z.literal("")),
 });
 
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .min(10, "El nombre es requerido.")
+    .trim(),
+  email: z
+    .string()
+    .min(1, { message: "El correo electrónico es requerido." })
+    .email({ message: "Introduce un formato de email válido (ej: usuario@correo.com)." })
+    .trim() // Elimina espacios accidentales al inicio o final
+    .toLowerCase(), // Normaliza para evitar problemas de duplicados por mayúsculas
+
+  description: z
+    .string()
+    .min(15, "La descripción debe tener 15 caracteres como minimino.")
+    .trim(),
+});
+
 export const emailSchema = z.object({
   email: z
     .string()

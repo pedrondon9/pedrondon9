@@ -12,34 +12,33 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link, Plus } from "lucide-react"
+import { ArrowRight, Link, Plus } from "lucide-react"
 import { FormField } from "../form-field"
 import { signInSchema } from "../forms-vadations"
 import { AddContentForm } from "../form-add-content/add-content-form"
+import { ContacForm } from "../form-contact/contact-form"
 
-export function DialogDemo() {
+export function DialogContact() {
 
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="bg-indigo-600 hover:bg-indigo-700 h-10 px-4">
-                    <Plus className="mr-2 size-4" />
-                    <Link className="font-bold text-sm">
-                        Agregar
-                    </Link>
+                
+                <Button size="lg" className="rounded-full bg-indigo-600 hover:bg-indigo-700 text-white px-8 h-14 text-lg font-semibold shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+                    ¿Quieres contactarme? <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-sm">
                 <DialogHeader>
-                    <DialogTitle className="text-center">Agregar nuevo contenido</DialogTitle>
+                    <DialogTitle className="text-center">Contacto</DialogTitle>
                     <DialogDescription className="text-center">
-                        Llena el formulario para agregar un nuevo contenido a tu sitio.
+                        Para contactar, por favor llena el formulario a continuación.
                     </DialogDescription>
                 </DialogHeader>
                 <FieldGroup>
 
-                    <AddContentForm />
+                    <ContacForm />
 
                 </FieldGroup>
 

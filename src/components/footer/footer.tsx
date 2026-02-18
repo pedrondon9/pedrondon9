@@ -33,7 +33,6 @@ export function Footer() {
                         
                     </div>
 
-                    <Separator className="my-8" />
 
                     {/* Copyright */}
                     <div className="text-center text-sm text-muted-foreground">

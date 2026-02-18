@@ -33,15 +33,18 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
     const mainImage = images && images.length > 0 ? images[0].url : "/placeholder.png";
     return (
 
-        <Card className='border-muted border-2 relative rounded-xl bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl overflow-hidden h-fit'>
-            <CardContent className='px-2'>
+
+
+
+        <Card className='border-none  pt-0 relative rounded-xl   overflow-hidden '>
+            <CardContent className='px-0 '>
                 <div className='flex h-auto w-full   justify-center items-center'>
                     <div className='flex   items-center '>
 
                         <img
                             src={mainImage}
                             alt={title || "Imagen del proyecto"}
-                            className="w-full h-auto object-contain transition-transform duration-300 hover:scale-105"
+                            className="w-full h-auto object-contain "
                             loading="lazy"
                         />
                     </div>
@@ -49,21 +52,28 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
             </CardContent>
 
             <CardHeader className='px-2'>
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className='text-xl'>{title}</CardTitle>
                 <CardDescription>
-                    {description}
+                    {description?.slice(0, 100)}
                 </CardDescription>
             </CardHeader>
-
-            <CardFooter className='flex flex-col gap-4 px-2'>
-                {/* Estadísticas e Interacción */}
-                <div className="flex justify-between items-center w-full">
+            <div className="flex justify-between items-center w-full ">
+                <div className="flex gap-1 hidden"> {/* Ocultamos los botones de interacción */}
+                    <Button variant='ghost' size='sm' onClick={() => setLiked(!liked)}>
+                        <HeartIcon className={cn('size-4 mr-1', liked && 'fill-destructive stroke-destructive')} />
+                        0K
+                    </Button>
+                    <Button variant='ghost' size='sm'>
+                        <MessageCircleIcon className='size-4 mr-1' />
+                        0K
+                    </Button>
+                </div>
 
                     {/* BOTONES NUEVOS: Editar, Desactivar, Borrar */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 px-2">
 
 
-                        <Button className="bg-indigo-600 hover:bg-indigo-700 h-10 px-4">
+                        <Button asChild className="bg-indigo-600 hover:bg-indigo-700 h-10 ">
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
 
                                 <Pencil className="size-4" />
@@ -71,14 +81,14 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
 
                             </Link>
                         </Button>
-                        <Button className="bg-primary-600 hover:bg-primary-700 h-10 px-4">
+                        <Button asChild className=" h-10 px-4" variant="outline">
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
 
                                 <PowerOff className="size-4" />
 
                             </Link>
                         </Button>
-                        <Button className="bg-red-600 hover:bg-red-700 h-10 px-4">
+                        <Button asChild variant="destructive" className=" h-10 px-4">
                             <Link className="font-bold text-sm" href={`/home/edit-content/${id}`}>
 
                                 <Trash2 className="size-4" />
@@ -87,10 +97,43 @@ export const CardContentAdmin: FC<CardContentProps> = ({ title, description, tec
                         </Button>
 
                     </div>
-                </div>
+            </div>
+            <CardFooter className='flex flex-col gap-4 px-2'>
+                {/* Estadísticas e Interacción */}
+
+                {/* Enlaces externos */}
+                {(githubLink || projectLink) && (
+                    <div className="flex gap-2 w-full">
+
+                        {projectLink && (
+                            <Button
+                                size="lg"
+                                asChild
+                                className="flex-1 relative border-1 z-20  bg-indigo-600 hover:bg-indigo-700  border-slate-700"
+                            >
+                                <Link href={projectLink} target="_blank" rel="noopener noreferrer">
+                                    Demo
+                                </Link>
+                            </Button>
+                        )}
+                        {githubLink && (
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                asChild
+                                className="flex-1 relative z-20 border-slate-700 "
+                            >
+                                <Link href={githubLink} target="_blank" rel="noopener noreferrer">
+                                    Código
+                                </Link>
+                            </Button>
+                        )}
+                    </div>
+                )}
+
 
                 {/* Botón Principal */}
-                <Button asChild variant="secondary" size="lg" className="w-full font-extrabold hover:bg-indigo-700">
+                <Button asChild variant="ghost" size="lg" className="w-full font-extrabold ">
                     <Link href={`/home/projects/${id}`} >
                         Ver contenido
                     </Link>

@@ -4,7 +4,7 @@
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "../ui/sheet";
 import Link from "next/link";
 
-
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
@@ -39,7 +39,8 @@ import {
     UserPlus2,
     BugIcon,
     ContainerIcon,
-    BlocksIcon
+    BlocksIcon,
+    LogIn
 } from 'lucide-react'
 import { usePathname } from "next/navigation";
 
@@ -63,6 +64,7 @@ const items = [
 export default function SideNav({ isOpen, setIsOpen }: SideNavProps) {
 
     const pathname = usePathname()
+    const { data: session, status } = useSession();
 
 
     return (
@@ -124,43 +126,52 @@ export default function SideNav({ isOpen, setIsOpen }: SideNavProps) {
                 <SheetFooter className="p-6 border-t mt-auto ">
                     <div className="w-full space-y-4">
                         {/* User Profile */}
-                        <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">
-                            <Avatar className="h-8 w-8">
-                                <AvatarImage src="/avatars/01.png" alt="Usuario" />
-                                <AvatarFallback>US</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium truncate">John Doe</p>
-                                <p className="text-xs text-muted-foreground truncate">admin@acme.com</p>
+                        {session ?
+                            <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">
+                                <Avatar className="h-8 w-8">
+                                    <AvatarImage src="/avatars/01.png" alt="Usuario" />
+                                    <AvatarFallback>{session.user?.name?.substring(0, 2).toUpperCase() || 'US'}</AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium truncate">{session.user?.name || 'Usuario'}</p>
+                                    <p className="text-xs text-muted-foreground truncate">{session.user?.email || 'admin@acme.com'}</p>
+                                </div>
+                                <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <Settings className="h-4 w-4" />
+                                </Button>
                             </div>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                                <Settings className="h-4 w-4" />
-                            </Button>
-                        </div>
+                            :
+                            <></>}
 
                         {/* Action Buttons */}
-                        <div className="grid grid-cols-2 gap-2">
-                            <Button variant="outline" size="sm" className="h-9" asChild>
+                        <div className="grid grid-cols-1 gap-2">
+                            <Button variant="outline" size="sm" className="h-9 hidden" asChild>
                                 <Link href="/support" onClick={() => setIsOpen(false)}>
                                     <HelpCircle className="h-4 w-4 mr-2" />
                                     Help
                                 </Link>
                             </Button>
-                            <Button variant="outline" size="sm" className="h-9 text-red-600 hover:text-red-700 hover:bg-red-50">
-                                <LogOut className="h-4 w-4 mr-2" />
-                                Logout
-                            </Button>
+                            {session ?
+                                <Button onClick={() => signOut()} variant="outline" size="lg" className="h-9 text-red-600 hover:text-red-700 hover:bg-red-50">
+                                    <LogOut className="h-4 w-4 mr-2" />
+                                    Salir
+                                </Button>
+                                :
+                                <Button asChild onClick={() => signOut()} variant="outline" size="lg" className="h-9 px-2 text-white hover:text-green-700 hover:bg-green-50">
+                                    <Link href="/login"><LogIn className="h-4 w-4 mr-2" />
+                                        Iniciar sesión</Link>
+                                </Button>
+                            }
+
                         </div>
 
                         {/* Status */}
                         <div className="flex items-center justify-between text-xs text-muted-foreground">
                             <div className="flex items-center space-x-1">
                                 <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                                <span>All systems operational</span>
+                                <span>pedrondong.com todos los derechos reservados</span>
                             </div>
-                            <Badge variant="outline" className="text-xs">
-                                v2.4.1
-                            </Badge>
+
                         </div>
                     </div>
                 </SheetFooter>

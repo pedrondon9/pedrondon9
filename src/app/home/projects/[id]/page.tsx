@@ -36,13 +36,15 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
     <div className="min-h-screen bg-black text-slate-50 selection:bg-indigo-500/30">
 
       {/* HEADER */}
-      <header className="bg-[#0f172a] border-b border-slate-800/60 sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="bg-transparent border-none border-slate-800/60 sticky top-0 z-50">
+        <div className="max-w-5xl mx-auto px-6  flex items-center justify-between">
           <div className="flex items-center gap-4">
+            <Button asChild variant="outline" className="my-5">
             <Link href="/home/content" className="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-400">
               <ArrowLeft className="h-5 w-5" />
+              Atras
             </Link>
-            <h1 className="font-bold text-xl tracking-tight">{project.title}</h1>
+            </Button>
           </div>
           <div className="flex gap-2">
           </div>
@@ -50,6 +52,8 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
       </header>
 
       <main className="max-w-5xl mx-auto px-4 md:px-6 py-8 space-y-12">
+
+        <h1 className="font-bold text-3xl tracking-tight">{project.title}</h1>
 
         {/* 1. SECCIÓN DE MEDIOS (VIDEO O IMAGEN) */}
 
@@ -93,7 +97,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
             <div className="bg-[#0f172a] rounded-xl border border-slate-800/60 p-8 shadow-xl">
               <h3 className="text-2xl font-bold mb-4 text-white">Acerca del Proyecto</h3>
               <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>
-              
+
             </div>
           </TabsContent>
 

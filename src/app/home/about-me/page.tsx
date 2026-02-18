@@ -51,7 +51,6 @@ export default function AboutStory() {
                 </div>
             </section>
 
-            <Separator />
 
             {/* Stack Tecnológico */}
             <section className="space-y-8">
@@ -59,13 +58,13 @@ export default function AboutStory() {
                     <h2 className="text-3xl font-bold tracking-tight  ">Stack Tecnológico</h2>
                 </div>
 
-                <div className="border-white/20 border-1 grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6 bg-secondary/30 bg-gradient-to-br from-slate-900 to-slate-950">
+                <div className="bg-secondary/30 border-white/20 border-1 grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6">
 
                     {/* Data Science & IA Card */}
                     <Card className=" bg-transparent border-none">
                         <CardHeader>
                             <div className="flex items-center gap-2">
-                                <BrainCircuit className="w-5 h-5 text-primary" />
+                                <BrainCircuit className="w-5 h-5 text-indigo-600" />
                                 <CardTitle>Ciencia de Datos e IA</CardTitle>
                             </div>
                             <CardDescription>Análisis predictivo y modelado estadístico</CardDescription>
@@ -83,7 +82,7 @@ export default function AboutStory() {
                     <Card className="bg-transparent border-none"> 
                         <CardHeader>
                             <div className="flex items-center gap-2">
-                                <Layers className="w-5 h-5 text-primary" />
+                                <Layers className="w-5 h-5 text-indigo-600" />
                                 <CardTitle>Desarrollo Full Stack</CardTitle>
                             </div>
                             <CardDescription>Arquitecturas escalables y modernas</CardDescription>
@@ -101,7 +100,7 @@ export default function AboutStory() {
 
             {/* Formación Actual */}
             <section className="border-white/20 border-1 rounded-md">
-                <Card className="bg-secondary/30 border-none bg-gradient-to-br from-slate-900 to-slate-950 shadow-2xl">
+                <Card className="bg-secondary/30 border-none  shadow-2xl">
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-white text-sm">
                             <Terminal className="w-4 h-4 " />

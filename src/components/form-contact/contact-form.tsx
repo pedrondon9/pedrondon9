@@ -60,9 +60,9 @@ export function ContacForm({ className, ...props }: React.ComponentProps<"div">)
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <form onSubmit={handleSubmit(onSubmit)} className={cn("space-y-6", className)}>
 
-                <Card className=" bg-gradient-to-br from-slate-900 to-slate-950 ">
+                <Card className=" bg-transparent border-none">
                    
-                    <CardContent>
+                    <CardContent className="p-0">
 
                         <FieldGroup>
                             <FormField

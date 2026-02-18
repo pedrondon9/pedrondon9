@@ -35,8 +35,8 @@ export const CardContents: FC<CardContentProps> = ({ title, description, technol
     console.log(mainImage, 'main image')
     return (
 
-        <Card className='border-none  pt-0 relative rounded-[5px]   overflow-hidden '>
-            <CardContent className='px-0 '>
+        <Card className='border-none   relative rounded-[5px]   overflow-hidden '>
+            <CardContent className='px-0 hidden'>
                 <div className='flex h-auto w-full   justify-center items-center'>
                     <div className='flex   items-center '>
 
@@ -53,7 +53,7 @@ export const CardContents: FC<CardContentProps> = ({ title, description, technol
             <CardHeader className='px-2'>
                 <CardTitle className='text-xl'>{title}</CardTitle>
                 <CardDescription>
-                    {description?.slice(0, 100)}
+                    {description?.slice(0, 200)}
                 </CardDescription>
             </CardHeader>
             <div className="flex justify-between items-center w-full ">

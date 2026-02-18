@@ -15,14 +15,14 @@ export async function POST(req: Request) {
     // 4. ENVIAR EL CORREO REAL
     await sendContactEmail(
       name,  
-      email_trim, 
+      "pndong55@gmail.com", 
       `Me gustaría contactarte `, // Asunto breve basado en la
       description
     );
 
     await sendContactEmail(
       'pedrondong.com',
-      '',
+      email_trim,
       "pedrondong.com - data science, AI y Full Stack Developer",
       'Gracias por contactarme. He recibido tu mensaje y me pondré en contacto contigo lo antes posible. Mientras tanto, puedes visitar mi portafolio para ver mis proyectos y habilidades. ¡Espero poder colaborar contigo pronto! '
     );

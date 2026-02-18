@@ -30,6 +30,8 @@ ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
+# Crear la carpeta de uploads y dar permisos ANTES de cambiar al usuario node
+RUN mkdir -p public/uploads/projects && chown -R node:node public/uploads
 
 COPY --from=builder /app/public ./public
 # Standalone copia solo lo necesario para ejecutar (incluye node_modules optimizados)

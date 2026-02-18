@@ -70,7 +70,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
             </div>
           </section>
           :
-          <section className="border border-slate-800 rounded-2xl ">
+          <section className="border border-slate-800 rounded-2xl hidden">
             <div className="relative md:h-150 w-full group">
               <img
                 src={`${process.env.AUTH_URL}/${coverImage}`}

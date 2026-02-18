@@ -30,10 +30,9 @@ export const sendContactEmail = async (
           <h2 style="color: #1f2937; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">Nuevo Mensaje de Contacto</h2>
           
           <p style="margin: 15px 0;"><strong>Nombre:</strong> ${userName}</p>
-          <p style="margin: 15px 0;"><strong>Email de contacto:</strong> ${userEmail}</p>
           
           <div style="background-color: #f9fafb; padding: 15px; border-radius: 5px; margin-top: 20px;">
-            <p style="color: #4b5563; font-style: italic;">"${message}"</p>
+            <p style="color: #4b5563; font-style: italic;font-size:16px;">"${message}"</p>
           </div>
 
 
@@ -42,9 +41,8 @@ export const sendContactEmail = async (
     `;
 
     const info = await transporter.sendMail({
-      from: `"${userName}" <${SMTP_USER}>`, // El remitente técnico sigue siendo tu SMTP_USER para evitar spam
-      to: CONTACT_RECEIVER || SMTP_USER,   // A dónde quieres que llegue el aviso
-      replyTo: userEmail,                  // Para que cuando des a "Responder", le escribas al usuario
+      from: `"pedrondong.com" <${SMTP_USER}>`,
+      to: userEmail,   // A dónde quieres que llegue el aviso
       subject: `Contacto: ${subject}`,
       html,
     });

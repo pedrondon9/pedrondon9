@@ -20,12 +20,12 @@ import { DialogContact } from "@/components/dialog-form-register/dialog-contact"
 
 export default function AboutStory() {
     return (
-        <div className="max-w-4xl mx-auto py-2 px-3 space-y-12 bg-background text-foreground">
+        <div className="  max-w-4xl mx-auto py-2 px-3 space-y-12 bg-background text-foreground">
 
             {/* Hero Section / Mi Historia */}
-            <section className="space-y-6">
+            <section className="space-y-6 bg-zinc-900/40">
                 <div className="space-y-2">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl ">
+                    <h1 className="text-4xl font-extrabold text-emerald-400 text-zinc-100 tracking-tight lg:text-5xl ">
                         Mi historia
                     </h1>
                     <p className="text-xl text-muted-foreground font-medium">
@@ -33,7 +33,7 @@ export default function AboutStory() {
                     </p>
                 </div>
 
-                <div className="prose prose-stone dark:prose-invert max-w-none space-y-4 text-lg">
+                <div className="max-w-none space-y-4 text-lg">
                     <p>
                         Hola, me llamo <strong>Pedro Ndong</strong> nací en <strong>Guinea Ecuatorial</strong>, donde la curiosidad innata se convirtió en mi principal motor de aprendizaje.
                         Ese impulso me llevó a formarme como <strong>programador autodidacta</strong>, experimentando con código hasta profesionalizarme
@@ -55,19 +55,19 @@ export default function AboutStory() {
             {/* Stack Tecnológico */}
             <section className="space-y-8">
                 <div className="flex items-center gap-2">
-                    <h2 className="text-3xl font-bold tracking-tight  ">Stack Tecnológico</h2>
+                    <h2 className="text-3xl font-bold tracking-tight text-emerald-400 text-zinc-100 ">Stack Tecnológico</h2>
                 </div>
 
                 <div className=" grid rounded-md border-muted  grid-cols-1 md:grid-cols-2 p-1 gap-6">
 
                     {/* Data Science & IA Card */}
-                    <Card className=" border-none">
+                    <Card className=" border-rose-900/50 bg-rose-950/20">
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <BrainCircuit className="w-5 h-5 text-indigo-600" />
-                                <CardTitle>Ciencia de Datos e IA</CardTitle>
+                                <CardTitle className="text-rose-100 ">Ciencia de Datos e IA</CardTitle>
                             </div>
-                            <CardDescription>Análisis predictivo y modelado estadístico</CardDescription>
+                            <CardDescription className="text-rose-200">Análisis predictivo y modelado estadístico</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-wrap gap-2">
                             {["Python","R", "Pandas", "NumPy", "TensorFlow", "Scikit-learn", "Estadística", "Machine Learning"].map((skill) => (
@@ -83,9 +83,9 @@ export default function AboutStory() {
                         <CardHeader>
                             <div className="flex items-center gap-2">
                                 <Layers className="w-5 h-5 text-indigo-600" />
-                                <CardTitle>Desarrollo Full Stack</CardTitle>
+                                <CardTitle className="">Desarrollo Full Stack</CardTitle>
                             </div>
-                            <CardDescription>Arquitecturas escalables y modernas</CardDescription>
+                            <CardDescription className="text-purple-200">Arquitecturas escalables y modernas</CardDescription>
                         </CardHeader>
                         <CardContent className="flex flex-wrap gap-2">
                             {["React", "Next.js", "Node.js", "Django", "PostgreSQL", "MongoDB", "DigitalOcean", "Docker", "TailwindCSS"].map((skill) => (
@@ -99,8 +99,8 @@ export default function AboutStory() {
             </section>
 
             {/* Formación Actual */} 
-            <section className=" border-1 rounded-md">
-                <Card className="border-none  shadow-2xl">
+            <section className="rounded-md">
+                <Card className="bg-purple-950/20 border-purple-900/40">
                     <CardContent className="pt-6 space-y-4">
                         <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-white text-sm">
                             <Terminal className="w-4 h-4 " />

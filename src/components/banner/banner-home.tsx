@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Sparkles, BrainCircuit, Code2 } from "lucide-react";
+import { ArrowRight, Sparkles, BrainCircuit, Code2, Layout, Palette, FileCode2, BarChart3, Terminal, Database, Github, Smartphone, Brain, Box, Monitor, Server } from "lucide-react";
 import Link from 'next/link';
 import { DialogContact } from '../dialog-form-register/dialog-contact';
 
@@ -25,13 +25,13 @@ export const BannerHome = () => {
         {/* Descripción / Subtítulo */}
         <p className="max-w-2xl text-lg md:text-xl text-slate-400 leading-relaxed">
           Nacido en <strong>Guinea Ecuatorial</strong>, mi viaje comenzó como autodidacta y hoy se consolida como
-          <strong> Full Stack Developer certificado por IBM</strong>. Actualmente, curso el Grado en
+          <strong> Full Stack Developer certificado por IBM atravez de Coursera</strong>. Actualmente, curso el Grado en
           <strong> IA y Ciencia de Datos</strong> para construir el futuro de la tecnología.
         </p>
 
         {/* Botones de Acción */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-          <DialogContact/>
+          <DialogContact />
           <Button asChild size="lg" variant="outline" className="rounded-full border-slate-700 hover:bg-slate-900 px-8 h-14 text-lg">
             <Link href="/home/content">  Ver Proyectos</Link>
           </Button>
@@ -39,9 +39,25 @@ export const BannerHome = () => {
 
         {/* Tecnologías destacadas en el banner */}
         <div className="pt-6 flex flex-wrap justify-center gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          <div className="flex items-center gap-2"><BrainCircuit size={20} /> <span className="text-sm font-mono">TensorFlow</span></div>
+          {/* Frontend & Mobile Frameworks */}
+          <div className="flex items-center gap-2"><Layout size={20} /> <span className="text-sm font-mono">React.js</span></div>
           <div className="flex items-center gap-2"><Code2 size={20} /> <span className="text-sm font-mono">Next.js</span></div>
-          <div className="flex items-center gap-2"><Sparkles size={20} /> <span className="text-sm font-mono">IBM Certified</span></div>
+          <div className="flex items-center gap-2"><Smartphone size={20} /> <span className="text-sm font-mono">React Native</span></div>
+
+          {/* Languages & Core Areas */}
+          <div className="flex items-center gap-2"><Terminal size={20} /> <span className="text-sm font-mono">Python / R</span></div>
+          <div className="flex items-center gap-2"><Brain size={20} /> <span className="text-sm font-mono">IA / Data Science</span></div>
+
+          {/* Databases */}
+          <div className="flex items-center gap-2"><Database size={20} /> <span className="text-sm font-mono">PostgreSQL / MongoDB</span></div>
+
+          {/* Infrastructure & DevOps */}
+          <div className="flex items-center gap-2"><Box size={20} /> <span className="text-sm font-mono">Docker</span></div>
+          <div className="flex items-center gap-2"><Monitor size={20} /> <span className="text-sm font-mono">Ubuntu</span></div>
+          <div className="flex items-center gap-2"><Server size={20} /> <span className="text-sm font-mono">PM2</span></div>
+
+          {/* Tools & Certs */}
+          <div className="flex items-center gap-2"><Github size={20} /> <span className="text-sm font-mono">Git & GitHub</span></div>
         </div>
       </div>
     </section>

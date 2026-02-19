@@ -10,6 +10,36 @@ import {
   Share2, Image as ImageIcon, ShieldCheck, User, Send, Play
 } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+const SCHEMES = [
+    // --- LOS ORIGINALES ---
+    { bg: "bg-slate-900/40", border: "border-slate-800", title: "text-slate-100", accent: "text-blue-400" },
+    { bg: "bg-zinc-900/40", border: "border-zinc-800", title: "text-zinc-100", accent: "text-emerald-400" },
+    { bg: "bg-neutral-900/40", border: "border-neutral-800", title: "text-neutral-100", accent: "text-amber-400" },
+    { bg: "bg-indigo-950/20", border: "border-indigo-900/50", title: "text-indigo-100", accent: "text-indigo-400" },
+    { bg: "bg-purple-950/20", border: "border-purple-900/50", title: "text-purple-100", accent: "text-purple-400" },
+    { bg: "bg-rose-950/20", border: "border-rose-900/50", title: "text-rose-100", accent: "text-rose-400" },
+
+    // --- NUEVAS INCORPORACIONES ---
+    // Cyan/Teal: Muy tecnológico y limpio
+    { bg: "bg-cyan-950/20", border: "border-cyan-900/40", title: "text-cyan-50", accent: "text-cyan-400" },
+    
+    // Esmeralda/Bosque: Transmite confianza y estabilidad
+    { bg: "bg-teal-950/20", border: "border-teal-900/40", title: "text-teal-50", accent: "text-teal-400" },
+    
+    // Naranja/Ámbar: Ideal para destacar proyectos creativos
+    { bg: "bg-orange-950/20", border: "border-orange-900/40", title: "text-orange-50", accent: "text-orange-400" },
+    
+    // Azul Cielo: Vibrante pero profesional
+    { bg: "bg-sky-950/20", border: "border-sky-900/40", title: "text-sky-50", accent: "text-sky-400" },
+    
+    // Lima/Neon: Da un toque de modernidad extrema
+    { bg: "bg-lime-950/20", border: "border-lime-900/40", title: "text-lime-50", accent: "text-lime-400" },
+    
+    // Fucsia/Violeta: Un toque artístico y elegante
+    { bg: "bg-fuchsia-950/20", border: "border-fuchsia-900/40", title: "text-fuchsia-50", accent: "text-fuchsia-400" },
+];
 
 export default async function ProjectViewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -39,11 +69,12 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
       <header className="bg-transparent border-none border-slate-800/60 sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-6  flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Button asChild variant="outline" className="my-5">
-            <Link href="/home/content" className="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-400">
-              <ArrowLeft className="h-5 w-5" />
-              Atras
-            </Link>
+            <Button asChild variant="outline" className={cn('my-5')}>
+              <Link href="/home/content" className={cn('p-2  rounded-full  text-slate-400',SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,'border-[1px] ' )}> 
+                <ArrowLeft className="h-5 w-5" />
+                Atras
+              </Link>
             </Button>
           </div>
           <div className="flex gap-2">
@@ -85,25 +116,36 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
 
         {/* 2. SECCIÓN DE TABS (DETALLES, GALERÍA, COMENTARIOS) - AHORA SEGUNDO */}
         <Tabs defaultValue="details" className="w-full space-y-6">
-          <div className="bg-[#0f172a] p-1.5 rounded-xl border border-slate-800/60 inline-flex shadow-sm">
+          <div 
+            className={cn(
+              'relative rounded-[5px] overflow-hidden p-1.5 rounded-xl border  inline-flex',
+              SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,
+              'border-[1px] ' // Efecto profesional de cristal
+            )}>
+
             <TabsList className="bg-transparent h-10 p-0 space-x-1 border-none shadow-none">
               <TabsTrigger value="details" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Detalles</TabsTrigger>
-              <TabsTrigger value="gallery" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Galería</TabsTrigger>
-              <TabsTrigger value="comments" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none">Comentarios</TabsTrigger>
+              <TabsTrigger value="gallery" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none hidden">Galería</TabsTrigger>
+              <TabsTrigger value="comments" className="rounded-xl text-[16px] px-2 data-[state=active]:bg-slate-800 data-[state=active]:text-indigo-400 text-slate-400 font-bold transition-all border-none hidden">Comentarios</TabsTrigger>
             </TabsList>
           </div>
 
           <TabsContent value="details" className="mt-0 outline-none">
-            <div className="bg-[#0f172a] rounded-xl border border-slate-800/60 p-8 shadow-xl">
-              <h3 className="text-2xl font-bold mb-4 text-white">Acerca del Proyecto</h3>
+            <div className={cn('rounded-xl p-8 ',SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,
+              'border-[1px] ' )} >
+              <h3 className={cn('text-2xl font-bold mb-4 tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>Acerca del Proyecto</h3>
               <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>
 
             </div>
           </TabsContent>
 
           <TabsContent value="gallery" className="mt-0 outline-none">
-            <div className="bg-[#0f172a] rounded-3xl border border-slate-800/60 p-8 shadow-xl">
-              <h3 className="text-2xl font-bold mb-6 text-white">Capturas de Pantalla</h3>
+            <div className={cn('rounded-xl p-8 ',SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,
+              'border-[1px] ' )}>
+              <h3 className={cn('text-2xl font-bold mb-4 tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>Capturas de Pantalla</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {project.images.map((img) => (
                   <div key={img.id} className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-black aspect-video">
@@ -115,7 +157,9 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
           </TabsContent>
 
           <TabsContent value="comments" className="mt-0 outline-none space-y-6">
-            <div className="bg-[#0f172a] rounded-3xl border border-slate-800/60 p-6 shadow-xl">
+            <div className={cn('rounded-xl p-8 ',SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,
+              'border-[1px] ' )}>
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20"><User className="h-5 w-5" /></div>
                 <textarea placeholder="Deja una duda o aporte..." className="flex-1 bg-transparent border-none text-slate-300 focus:ring-0 resize-none h-12" disabled />
@@ -128,16 +172,20 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
         {/* 3. SECCIÓN DE ENLACES Y ACCIONES - DISEÑO PREMIUM */}
         <section className="relative group">
           {/* Decoración de fondo (un brillo sutil detrás de la tarjeta) */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
 
-          <Card className="relative bg-[#0b1221] border-slate-800/60 rounded-[1rem] shadow-2xl overflow-hidden">
+          <Card 
+          className={cn('rounded-[1rem] p-1.5 overflow-hidden relative' ,SCHEMES[project.id % SCHEMES.length].bg,
+              SCHEMES[project.id % SCHEMES.length].border,
+              'border-[1px] ' )}
+          
+          >
             <CardContent className="py-8 px-8">
               <div className="flex flex-col lg:flex-row gap-12 items-center">
 
                 {/* Info del Proyecto */}
                 <div className="flex-1 space-y-6 text-center lg:text-left">
                   <div className="space-y-2">
-                    <h3 className="text-2xl md:text-2xl font-black tracking-tight text-white">
+                    <h3 className={cn('text-2xl font-bold mb-4 tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>
                       ¿Quieres explorar el código?
                     </h3>
                     <p className="text-slate-400 text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
@@ -180,7 +228,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
                   </div>
                   <div>
                     <p className="text-[13px] font-black uppercase tracking-tighter text-slate-500">Autor</p>
-                    <p className="text-md text-slate-200 font-semibold tracking-tight">Admin del Proyecto</p>
+                    <p className="text-md text-slate-200 font-semibold tracking-tight">pedro ndong</p>
                   </div>
                 </div>
 
@@ -188,7 +236,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
                   <div className="h-12 w-18 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
                     <ShieldCheck className="h-5 w-5 text-slate-500 group-hover/item:text-indigo-400" />
                   </div>
-                  <div>
+                  <div className="hidden">
                     <p className="text-[13px] font-black uppercase tracking-tighter text-slate-500">Licencia</p>
                     <p className="text-md text-slate-200 font-semibold tracking-tight">MIT Open Source</p>
                   </div>

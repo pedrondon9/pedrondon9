@@ -1,20 +1,11 @@
 services:
   next-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      # Habilita el cache de BuildKit de forma más agresiva
-      cache_from:
-        - next-server:latest
+    build: .
     container_name: pedrondong
-    image: next-server:latest # Etiquetar la imagen ayuda al cache de Docker
     ports:
       - "127.0.0.1:3000:3000"
-    restart: always
+    restart: always # Si el servidor se cae, Docker lo levanta solo
+    # Esto le dice a Docker que lea las variables de tu archivo .env local
     env_file:
       - .env
-    # Limitar recursos evita que el build "congele" tu máquina si es limitada
-    deploy:
-      resources:
-        limits:
-          memory: 2G
+

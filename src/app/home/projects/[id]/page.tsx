@@ -67,7 +67,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
 
       {/* HEADER */}
       <header className="bg-transparent border-none border-slate-800/60 sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-6  flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-1  flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button asChild variant="outline" className={cn('my-5')}>
               <Link href="/home/content" className={cn('p-2  rounded-full  text-slate-400',SCHEMES[project.id % SCHEMES.length].bg,
@@ -82,14 +82,16 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 md:px-6 py-8 space-y-12">
+      <main className="max-w-5xl mx-auto px-1 md:px-6 py-8 space-y-12">
 
-        <h1 className="font-bold text-3xl tracking-tight">{project.title}</h1>
+        <h1 className={cn('font-bold text-3xl tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>{project.title}</h1>
 
         {/* 1. SECCIÓN DE MEDIOS (VIDEO O IMAGEN) */}
 
         {project.projectVideo ?
-          <section className="bg-[#0f172a] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
+          <section className={cn('bg-[#0f172a] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl',SCHEMES[project.id % SCHEMES.length].bg,
+            SCHEMES[project.id % SCHEMES.length].border,
+            'border-[1px] ' )}>
             <div className="relative aspect-video w-full bg-black">
 
               <iframe
@@ -121,7 +123,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
               'relative rounded-[5px] overflow-hidden p-1.5 rounded-xl border  inline-flex',
               SCHEMES[project.id % SCHEMES.length].bg,
               SCHEMES[project.id % SCHEMES.length].border,
-              'border-[1px] ' // Efecto profesional de cristal
+              'border-none ' // Efecto profesional de cristal
             )}>
 
             <TabsList className="bg-transparent h-10 p-0 space-x-1 border-none shadow-none">
@@ -132,9 +134,9 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
           </div>
 
           <TabsContent value="details" className="mt-0 outline-none">
-            <div className={cn('rounded-xl p-8 ',SCHEMES[project.id % SCHEMES.length].bg,
+            <div className={cn('rounded-xl p-1.5',SCHEMES[project.id % SCHEMES.length].bg,
               SCHEMES[project.id % SCHEMES.length].border,
-              'border-[1px] ' )} >
+              'border-none ' )} >
               <h3 className={cn('text-2xl font-bold mb-4 tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>Acerca del Proyecto</h3>
               <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>
 
@@ -159,7 +161,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
           <TabsContent value="comments" className="mt-0 outline-none space-y-6">
             <div className={cn('rounded-xl p-8 ',SCHEMES[project.id % SCHEMES.length].bg,
               SCHEMES[project.id % SCHEMES.length].border,
-              'border-[1px] ' )}>
+              'border-none ' )}>
               <div className="flex gap-4">
                 <div className="h-10 w-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20"><User className="h-5 w-5" /></div>
                 <textarea placeholder="Deja una duda o aporte..." className="flex-1 bg-transparent border-none text-slate-300 focus:ring-0 resize-none h-12" disabled />
@@ -176,10 +178,10 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
           <Card 
           className={cn('rounded-[1rem] p-1.5 overflow-hidden relative' ,SCHEMES[project.id % SCHEMES.length].bg,
               SCHEMES[project.id % SCHEMES.length].border,
-              'border-[1px] ' )}
+              'border-none ' )}
           
           >
-            <CardContent className="py-8 px-8">
+            <CardContent className="p-1.5">
               <div className="flex flex-col lg:flex-row gap-12 items-center">
 
                 {/* Info del Proyecto */}
@@ -218,10 +220,9 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
                 </div>
               </div>
 
-              <Separator className="my-10 bg-slate-800/40" />
 
               {/* Footer de la tarjeta con Metadatos */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 mt-15 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="flex items-center gap-4 group/item">
                   <div className="h-12 w-12 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
                     <User className="h-5 w-10 text-slate-500 group-hover/item:text-indigo-400" />
@@ -232,11 +233,11 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 group/item ">
+                <div className="flex items-center gap-4 group/item hidden">
                   <div className="h-12 w-18 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center group-hover/item:border-indigo-500/50 transition-colors">
                     <ShieldCheck className="h-5 w-5 text-slate-500 group-hover/item:text-indigo-400" />
                   </div>
-                  <div className="hidden">
+                  <div className="">
                     <p className="text-[13px] font-black uppercase tracking-tighter text-slate-500">Licencia</p>
                     <p className="text-md text-slate-200 font-semibold tracking-tight">MIT Open Source</p>
                   </div>

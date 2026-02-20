@@ -40,32 +40,57 @@ interface Category {
 }
 
 export default function Page() {
-    const [previews, setPreviews] = useState<string[]>([]);
+    const [loadingCat, setLoadingCat] = useState(true);
+    const [categories, setCategories] = useState<Category[]>([]);
 
     const [data, setData] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchData = async () => {
+    const [filter, setFilter] = useState<string>("all");
+
+    const fetchData = async (categoryType?: string) => {
         try {
             setLoading(true);
-            // Con Axios, la data ya viene parseada en res.data
-            const res = await axios.get<Project[]>("/api/content/get");
-            console.log("Respuesta de Axios:", res);
+            // Enviamos el parámetro 'category' en la URL
+            const url = categoryType && categoryType !== "all"
+                ? `/api/content/get?category=${categoryType}`
+                : "/api/content/get";
+
+            const res = await axios.get<Project[]>(url);
             setData(res.data);
         } catch (err: any) {
-            console.error("Error con Axios:", err);
-            setError("No se pudieron cargar las categorías");
+            setError("No se pudieron cargar los proyectos");
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
+        fetchData(filter);
+    }, [filter]);
 
 
-        fetchData();
+        useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                setLoadingCat(true);
+                // Con Axios, la data ya viene parseada en res.data
+                const res = await axios.get<Category[]>("/api/categories");
+                console.log("Respuesta de Axios (categorías):", res);
+                setCategories(res.data);
+            } catch (err: any) {
+                console.error("Error con Axios:", err);
+                setError("No se pudieron cargar las categorías");
+            } finally {
+                setLoadingCat(false);
+            }
+        };
+
+        fetchCategories();
     }, []);
+
+
     return (
         <section className="container grid-cols-1 grid gap-10 mx-auto px-1 ">
             <div className="">
@@ -76,22 +101,29 @@ export default function Page() {
                 <div className="w-screen md:w-88 lg:w-88 ">
                     <Field className="">
 
-                        <Select >
+                        <Select value={filter} onValueChange={(value) => setFilter(value)}>
                             <SelectTrigger className="bg-indigo-600">
                                 <SelectValue placeholder="Tipo de contenido" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="engineering">Ciencia de datos</SelectItem>
-                                <SelectItem value="design">Inteligencia artificial</SelectItem>
-                                <SelectItem value="design">Full Stack</SelectItem>
+                                {!loadingCat ? (
+                                    <>
+                                        <SelectItem value="all">Todos los proyectos</SelectItem>
+                                        {categories.map((cat) => (
+                                            <SelectItem key={cat.id} value={cat.name}>
+                                                {cat.name}
+                                            </SelectItem>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <SelectItem value="loading">Cargando categorías...</SelectItem>
+                                )}
                             </SelectContent>
                         </Select>
-
                     </Field>
                 </div>
             </div>
-
-
+                                
 
 
             {!loading ? (

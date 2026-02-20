@@ -82,7 +82,7 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-1 md:px-6 py-8 space-y-12">
+      <main className="max-w-5xl mx-auto px-1 md:px-1 py-8 space-y-12">
 
         <h1 className={cn('font-bold text-3xl tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>{project.title}</h1>
 
@@ -175,27 +175,27 @@ export default async function ProjectViewPage({ params }: { params: Promise<{ id
         <section className="relative group">
           {/* Decoración de fondo (un brillo sutil detrás de la tarjeta) */}
 
-          <Card 
+          <Card
           className={cn('rounded-[1rem] p-1.5 overflow-hidden relative' ,SCHEMES[project.id % SCHEMES.length].bg,
               SCHEMES[project.id % SCHEMES.length].border,
               'border-none ' )}
           
           >
-            <CardContent className="p-1.5">
-              <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <CardContent className="p-1">
+              <div className="flex flex-col  lg:flex-row gap-12 ">
 
                 {/* Info del Proyecto */}
-                <div className="flex-1 space-y-6 text-center lg:text-left">
+                <div className="space-y-6   text-left">
                   <div className="space-y-2">
                     <h3 className={cn('text-2xl font-bold mb-4 tracking-tight',SCHEMES[project.id % SCHEMES.length].title)}>
                       ¿Quieres explorar el código?
                     </h3>
-                    <p className="text-slate-400 text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+                    <p className="text-slate-400 text-lg mx-auto lg:mx-0 leading-relaxed">
                       Este proyecto es de código abierto. Puedes revisar la implementación o probar la demo interactiva.
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                  <div className="flex flex-wrap gap-2 justify-start">
                     {project.categories.map((cat) => (
                       <span key={cat.id} className="text-[14px] font-bold uppercase tracking-[0.2em] text-indigo-400/80 bg-indigo-500/5 px-3 py-1 rounded-md border border-muted">
                         {cat.name}
